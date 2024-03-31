@@ -3,6 +3,7 @@
 构建HTTP服务器
 
 首先，我们需要从零开始构建一个提供HTTP服务的Node.js项目，其具体步骤如下：
+
 - 在code目录下创建一个名为05_bookComment的项目目录，并在其中执行npm init -y命令将其初始化为一个Node.js项目。然后在该项目的根目录下创建以下三个子目录：
 -	restfulAPI目录：用于存放接下来要实现的RESTful API。
 	database目录：本项目选择使用SQLite3数据库，届时数据库文件将存放在该目录下。
