@@ -57,6 +57,7 @@ http.createServer(function (req, res) {
     console.log(`请访问${host}，按Ctrl+C终止服务！`);
 });
 在上述服务器的实现代码中，我们将HTTP服务分成了两个部分：第一部分是主要用于响应Web浏览器对HTML页面、CSS样式文件、JavaScript脚本文件以及图片文件等静态资源请求的普通Web服务。这部分服务的具体实现将会留待下一章中来讨论，目前只需要暂时预留个位置即可。第二部分就是我们现在要实现的RESTful服务。正如读者所见，我们在这里先导入了实现了RESTful API的自定义模块，然后根据前端使用的HTTP请求方法调用了该模块中不同的API。接下来，我们的任务就是实现这个名为restfulAPI的自定义模块了。
+
 7.2.2 实现RESTful API
 由于本项目选择使用Knex这个库来操作Sqlite3数据库 ，所以在正式开始构建restfulAPI模块之前，我们需要先在项目根目录下执行npm install knex --save命令将Knex库安装到当前项目中。在安装过程中，NPM命令会告诉我们当前安装的Knex库的版本号，以及所对应的sqlite3库的版本号。因为Knex是基于sqlite3这个库来实现的，所以我们还必须为该项目安装相应版本的sqlite3库。例如在笔者这里，当前安装的是0.95.4版本的Knex库，其对应的是5.0.0以上版本的sqlite3库，所以我们要执行npm install sqlite3@^5.0.0 --save命令来安装它。
 待一切安装过程顺利完成之后，我们就可以开始构建restfulAPI模块的步骤了。首先在code/05_bookComment/restfulAPI目录下创建一个名为index.js的文件，并在其中输入如下代码：
