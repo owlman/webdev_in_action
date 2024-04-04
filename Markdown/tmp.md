@@ -8,6 +8,7 @@
 -	restfulAPI目录：用于存放接下来要实现的RESTful API。
 	database目录：本项目选择使用SQLite3数据库，届时数据库文件将存放在该目录下。
 	在以上配置工作完成之后，我们就可以在code/05_bookComment目录下创建一个名为index.js的文件，并在其中输入如下代码：
+
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
@@ -20,7 +21,17 @@ const host = `http://localhost:${port}/`;
 
 // 定义 Web 服务
 function webServer(req, res) {
-    // 留待下一章中来实现
+    const webroot = '/webclient/dist';
+    fs.readFile(`.${webroot + req.url}`, function (err, data) {
+        if (err !== null) {
+            res.writeHead(404, {
+                'Content-Type': 'text/html, charset=utf-8'
+            });
+            return res.end('相关页面不存在！');
+        }
+        res.writeHead(200);
+        res.end(data);
+    });
 }
 
 // 定义 RESTful 服务
