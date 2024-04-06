@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入Bootstrap框架的CSS样式文件 -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!-- 引入Bootstrap框架需要加载的脚本文件 -->       
+        <script defer src="./node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+        <!-- 引入Bootstrap框架的JavaScript脚本文件 -->
+        <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- 引入FontAwesome图标库定义的样式文件 -->
+        <link rel="stylesheet" 
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- 引入自定义的CSS样式文件 -->
+        <link rel="stylesheet" href="styles/custom.css">
+        <title>凌雪冰熊：来自冰雪世界的熊抱！</title>
+    </head>
+    <body>
+        <!-- 导航栏区域开始-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-text">
+            <div class="container-fluid p-2">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/logo.png"  width="60" class="d-inline-block">
+                    <span class="fs-4">凌雪冰熊</span>
+                </a>
+                <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" 
+                    data-bs-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.htm">
+                                首页
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./news.htm">新闻活动</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./show.htm">产品展示</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./join.htm">申请加盟</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                                href="#" id="navbarDropdown" 
+                                role="button" data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                                更多信息
+                            </a>
+                            <ul id="dropdown-menu" 
+                                class="dropdown-menu" 
+                                aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">企业文化</a></li>
+                                <li><a class="dropdown-item" href="#">企业荣誉</a></li>
+                                <li><a class="dropdown-item" href="#">企业历程</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control" type="search" 
+                            placeholder="搜索关键字" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fa fa-search fa-lg"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- 导航栏区域结束 -->
+        <!-- 主体区域开始 -->
+        <main class="container-fluid g-0">
+            <section>
+                <div id="carouselExample" class="carousel slide" 
+                    data-bs-ride="carousel">
+                    <!-- 组件指示符 -->
+                    <div class="carousel-indicators ">
+                        <button type="button" class="active"
+                            data-bs-target="#carouselExample"
+                            data-bs-slide-to="0"  
+                            aria-label="Slide 1">
+                        </button>
+                        <button type="button" 
+                            data-bs-target="#carouselExample" 
+                            data-bs-slide-to="1" aria-label="Slide 2">
+                        </button>
+                        <button type="button" 
+                            data-bs-target="#carouselExample" 
+                            data-bs-slide-to="2" aria-label="Slide 3">
+                        </button>
+                    </div>
+                    <!-- 组件主播放区 -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./img/shop1.jpg"  height="650vh"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption text-start">
+                                <h2>北京门店</h2>
+                                <ul class="list-unstyled">
+                                    <li>联系人：陈经理</li>    
+                                    <li>地址：北京市朝阳区XXX</li>
+                                    <li>电话：123-456-7890</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/shop2.jpg" height="650vh"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption text-start">
+                                <h2>上海门店</h2>
+                                <ul class="list-unstyled">
+                                    <li>联系人：林经理</li>       
+                                    <li>地址：上海市浦东新区XXX</li>
+                                    <li>电话：234-567-8901</li>
+                                </ul>          
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/shop3.jpg" height="650vh"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption text-start">
+                                <h2>广州门店</h2>
+                                <ul class="list-unstyled">
+                                    <li>联系人：王经理</li>                
+                                    <li>地址：广州市天河区XXX</li>
+                                    <li>电话：345-678-9012</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 组件控制按钮区  -->
+                    <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" 
+                            aria-hidden="true">
+                        </span>
+                        <span class="visible">上一张</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" 
+                        data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" 
+                            aria-hidden="true">
+                        </span>
+                        <span class="visible">下一张</span>
+                    </button>
+                </div>
+            </section>
+            <section class="container">
+                <h1 class="text-center text-light my-5 fw-bolder">
+                    一起感受来自冰雪世界的熊抱！
+                </h1>
+                <article class="row mt-5 gx-1">
+                    <div class="card col-4 text-center p-3">
+                        <i class="fas fa-user-friends fa-5x card-img-top"></i>
+                        <div class="card-body">
+                            <h4 class="card-title">研发生产</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">拥有独立的研发团队</li>
+                                <li class="list-group-item">严格把控优质原料</li>
+                                <li class="list-group-item">拥有多项专利技术</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card col-4 text-center text-bg-secondary p-3">
+                        <i class="fas fa-truck fa-5x card-img-top"></i>
+                        <div class="card-body">
+                            <h4 class="card-title">物流运作</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">拥有遍布全国的物流中心</li>
+                                <li class="list-group-item">由点到面推行物流免运费</li>
+                                <li class="list-group-item">构建强大而高效的物流服务</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card col-4 text-center p-3">
+                        <i class="fas fa-tasks fa-5x card-img-top"></i>
+                        <div class="card-body">
+                            <h4 class="card-title">运营管理</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">拥有统一高效的品牌管理</li>
+                                <li class="list-group-item">严控各地门店的服务质量</li>
+                                <li class="list-group-item">努力提升品牌的知名度与集中力</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main> 
+        <!--主体区域结束 -->
+        <!-- 页脚区域开始 -->
+        <footer class="p-3 text-light">
+            <section id="contact" class="container">
+                <h4>联系我们：</h4>
+                <div class="row m-3">
+                    <!-- 使用 <i> 标记的 class 属性插入来自第三方库的图标 -->
+                    <ul class="list-unstyled col-5">
+                        <li><i class="fa fa-phone"></i> 123-456-7890</li>
+                        <li><i class="fa fa-envelope"></i> message@snowbear.com</li>
+                        <li><i class="fa fa-map-marker"></i> 上海市浦东新区某某路X号</li>
+                    </ul>
+                    <ul class="list-unstyled col-4">
+                        <li><i class="fab fa-twitter"></i> @SnowBear</li>
+                        <li><i class="fab fa-weibo"></i> @SnowBear</li>
+                        <li><i class="fab fa-facebook-f"></i> 凌雪冰熊官方主页</li>
+                    </ul>
+                    <div class="col-3 text-center">
+                        <i class="fab fa-weixin fa-3x"></i>
+                        <p>关注凌雪冰熊公众号</p>
+                    </div>
+                </div>
+            </section>
+            <section class="container text-center m-3 ">
+                <hr>
+                <span>&copy; 2023 凌雪冰熊有限公司</span>
+            </section>
+        </footer>
+        <!-- 页脚区域开始 -->
+    </body>
+</html>

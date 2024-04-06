@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入Bootstrap框架的CSS样式文件 -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!-- 引入Bootstrap框架需要加载的脚本文件 -->       
+        <script defer src="./node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+        <!-- 引入Bootstrap框架的JavaScript脚本文件 -->
+        <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- 引入FontAwesome图标库定义的样式文件 -->
+        <link rel="stylesheet" 
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- 引入自定义的CSS样式文件 -->
+        <link rel="stylesheet" href="styles/custom.css">
+        <title>凌雪冰熊：来自冰雪世界的熊抱！</title>
+    </head>
+    <body>
+        <!-- 导航栏区域开始-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-text">
+            <div class="container-fluid p-2">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/logo.png"  width="60" class="d-inline-block">
+                    <span class="fs-4">凌雪冰熊</span>
+                </a>
+                <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" 
+                    data-bs-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.htm">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./news.htm">
+                                新闻活动
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./show.htm">产品展示</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./join.htm">申请加盟</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                                href="#" id="navbarDropdown" 
+                                role="button" data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                                更多信息
+                            </a>
+                            <ul id="dropdown-menu" 
+                                class="dropdown-menu" 
+                                aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">企业文化</a></li>
+                                <li><a class="dropdown-item" href="#">企业荣誉</a></li>
+                                <li><a class="dropdown-item" href="#">企业历程</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control" type="search" 
+                            placeholder="搜索关键字" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fa fa-search fa-lg"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- 导航栏区域结束 -->
+        <!-- 主体区域开始 -->
+        <main class="container-fluid g-0">
+            <div class="row p-0">
+                <aside class="m-3 px-3 col-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>最近新闻</h4>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#news-1">
+                                    2024-4-12：本店股票在沪上市
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#news-2">
+                                    2024-2-12：广州门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#news-3">
+                                    2024-1-21：上海门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#news-4">
+                                    2024-1-12：北京门店开张
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card mt-2">
+                        <div class="card-header">
+                            <h4>门店开张</h4>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hotnews-1">
+                                    2023-2-12：杭州门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hotnews-2">
+                                    2023-1-21：深圳门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hotnews-3">
+                                    2023-1-12：宁波门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hotnews-4">
+                                    2022-12-21：成都门店开张
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hotnews-5">
+                                    2022-12-12：重庆门店开张
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <section class="my-3 col-8">
+                    <article id="news-1">
+                        <div class="card">
+                            <div class="card-header">
+                                2024年4月12日：本店股票在沪上市
+                            </div>
+                            <div class="card-body">
+                            <h5 class="card-title">
+                                凌雪冰熊有限公司今日在上海证券交易所上市
+                            </h5>
+                            <p class="card-text">
+                                凌雪冰熊有限公司（股票代码：12345）今日在上海证券交易所上市，开盘价为100元/股，总市值为100亿元。凌雪冰熊有限公司是一家专注于研发和生产冰熊系列产品的公司，其产品广泛应用于食品、饮料、日用品等领域。公司创始人凌雪先生表示，很高兴能够将凌雪冰熊的产品带到全国人民的餐桌上来，并希望与广大消费者共同打造一个健康、绿色的食品生态圈。
+                            </p>
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            </div>
+                            </div>
+                    </article>
+                    <article id="news-2">
+                        <div class="card">
+                            <div class="card-header">
+                                2024年2月12日：广州门店开张
+                            </div>
+                            <div class="card-body">
+                                <img src="./img/shop3.jpg" class="w-25 float-end m-3">
+                                <h5 class="card-title">
+                                    凌雪冰熊连锁饮料店广州门店今日开张大吉
+                                </h5>
+                                <p class="card-text">
+                                    凌雪冰熊连锁饮料店广州门店今日正式开张，开业典礼上，凌雪冰熊董事长凌雪先生表示，广州门店的开设是凌雪冰熊品牌战略的重要一步，标志着凌雪冰熊将逐步在全国范围内扩张。凌雪冰熊连锁饮料店广州门店将提供更多健康、绿色、健康的饮料产品，为广大消费者提供更多选择。
+                               </p>
+                               <p class="card-text">
+                                   凌雪冰熊连锁饮料店广州门店的选址十分重要，凌雪冰熊选择在广州市天河区，这是凌雪冰熊认为最适合创业的城市之一。凌雪冰熊连锁饮料店广州门店将提供更多健康、绿色、健康的饮料产品，为广大消费者提供更多选择。
+                               </p>
+                                <a href="#" class="btn btn-primary">查看详情</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="news-3">
+                        <div class="card">
+                            <div class="card-header">
+                                2024年1月21日：上海门店开张
+                            </div>
+                            <div class="card-body">
+                                <img src="./img/shop2.jpg" class="w-25 float-end m-3">
+                                <h5 class="card-title">
+                                    凌雪冰熊连锁饮料店上海门店今日开张大吉
+                                </h5>
+                                <p class="card-text">
+                                    凌雪冰熊连锁饮料店上海门店今日正式开张，地址位于浦东新区陆家嘴，是一家集饮料销售、休闲娱乐为一体的连锁店。店内设有各种饮料、咖啡、甜点等，为顾客提供丰富多样的选择。凌雪冰熊连锁饮料店上海门店期待您的光临！    
+                                </p>
+                               <p class="card-text">
+                                   在开业典礼上，凌雪冰熊连锁饮料店总经理表示，上海门店的开设，标志着凌雪冰熊连锁饮料店在华东地区的进一步发展。凌雪冰熊连锁饮料店将继续以创新、优质的服务，为消费者提供更多健康、绿色、健康的饮料产品。
+                               </p>
+                                <a href="#" class="btn btn-primary">查看详情</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="news-4">
+                        <div class="card">
+                            <div class="card-header">
+                                2024年1月12日：北京门店开张
+                            </div>
+                            <div class="card-body">
+                                <img src="./img/shop1.jpg" class="w-25 float-end m-3">
+                                <h5 class="card-title">
+                                    凌雪冰熊连锁饮料店北京门店今日开张大吉
+                                </h5>
+                                <p class="card-text">
+                                    凌雪冰熊连锁饮料店北京门店今日正式开张，地址位于朝阳区，是一家集饮料销售、休闲娱乐为一体的连锁店。店内设有各种饮料、咖啡、甜点等，为顾客提供.丰富多样的选择。凌雪冰熊连锁饮料店北京门店期待您的光临！
+                                </p>
+                                <p class="card-text">
+                                    在开业典礼上，凌雪冰熊连锁饮料店总经理表示，北京门店的开设，标志着凌雪冰熊连锁饮料店在华东地区的进一步发展。凌雪冰熊连锁饮料店将继续以创新、优质的服务，为消费者提供更多健康、绿色、健康的饮料产品。
+                                </p>
+                                <a href="#" class="btn btn-primary">查看详情</a>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </main>
+        <!-- 主体区域结束 -->
+        <!-- 页脚区域开始 -->
+        <footer class="p-3 text-light">
+            <section id="contact" class="container">
+                <h4>联系我们：</h4>
+                <div class="row m-3">
+                    <!-- 使用 <i> 标记的 class 属性插入来自第三方库的图标 -->
+                    <ul class="list-unstyled col-5">
+                        <li><i class="fa fa-phone"></i> 123-456-7890</li>
+                        <li><i class="fa fa-envelope"></i> message@snowbear.com</li>
+                        <li><i class="fa fa-map-marker"></i> 上海市浦东新区某某路X号</li>
+                    </ul>
+                    <ul class="list-unstyled col-4">
+                        <li><i class="fab fa-twitter"></i> @SnowBear</li>
+                        <li><i class="fab fa-weibo"></i> @SnowBear</li>
+                        <li><i class="fab fa-facebook-f"></i> 凌雪冰熊官方主页</li>
+                    </ul>
+                    <div class="col-3 text-center">
+                        <i class="fab fa-weixin fa-3x"></i>
+                        <p>关注凌雪冰熊公众号</p>
+                    </div>
+                </div>
+            </section>
+            <section class="container text-center m-3 ">
+                <hr>
+                <span>&copy; 2023 凌雪冰熊有限公司</span>
+            </section>
+        </footer>
+        <!-- 页脚区域开始 -->
+    </body>
+</html>
