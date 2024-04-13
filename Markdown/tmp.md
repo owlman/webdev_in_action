@@ -71,6 +71,7 @@ http.createServer(function (req, res) {
 
 7.2.2 实现RESTful API
 由于本项目选择使用Knex这个库来操作Sqlite3数据库 ，所以在正式开始构建restfulAPI模块之前，我们需要先在项目根目录下执行npm install knex --save命令将Knex库安装到当前项目中。在安装过程中，NPM命令会告诉我们当前安装的Knex库的版本号，以及所对应的sqlite3库的版本号。因为Knex是基于sqlite3这个库来实现的，所以我们还必须为该项目安装相应版本的sqlite3库。例如在笔者这里，当前安装的是0.95.4版本的Knex库，其对应的是5.0.0以上版本的sqlite3库，所以我们要执行npm install sqlite3@^5.0.0 --save命令来安装它。
+
 待一切安装过程顺利完成之后，我们就可以开始构建restfulAPI模块的步骤了。首先在code/05_bookComment/restfulAPI目录下创建一个名为index.js的文件，并在其中输入如下代码：
 const path = require('path');
 const knex = require('knex');
