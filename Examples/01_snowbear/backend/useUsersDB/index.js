@@ -60,7 +60,7 @@ const usersDBApi = {
     },
 
     // 创建用于根据指定编号在 user 数据库中查询用户的 API
-    getUserById : async function(collectName, id) {
+    getUserById : async function(id) {
         try {
             await this.openCollect(collectName);
             const result =

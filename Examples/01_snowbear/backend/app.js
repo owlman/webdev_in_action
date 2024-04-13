@@ -2,6 +2,9 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 
+// 引入HTTP API模块
+const http_api = require('./http_api');
+
 // 设置服务器的端口号
 const port = 80;
 // 设置主机名
@@ -22,9 +25,19 @@ function staticServer(req, res) {
     });
 }
 
-// 定义动态的 HTTP API 服务
+// 定义 HTTP 请求的路由表
 function apiServer(req, res) {
-    // 相关内容留待下一章讨论
+    switch (req.method) {
+        case 'GET':
+            http_api.getRequest(req, res);
+            break;
+        case 'POST':
+            http_api.postRequest(req, res);
+            break;
+        case 'DELETE':
+            http_api.deleteRequest(req, res);
+            break;
+    }
 }
 
 // 构建 HTTP 服务
