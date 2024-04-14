@@ -1,8 +1,6 @@
 const queryString = require('querystring');
 // 引入用户数据操作模块
 const usersDBApi = require('./useUsersDB');
-const { tmpdir } = require('os');
-const { promises } = require('dns');
 
 // 创建用户功能模块的对象
 const usersApi = {
