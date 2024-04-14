@@ -52,7 +52,9 @@ const http_api = {
     getRequest:  async function(req, res) {
         this.parseUrl(req, res, async function(reqParam) {
             if (isNumeric(reqParam)) {
+                // 调用按 ID 查询用户的 API
                 const userMsg = await users.getUserById(reqParam);
+                // 判断查询结果
                 if (userMsg) {
                     res.writeHead(200, {
                         "Content-Type": "application/json",
@@ -77,7 +79,9 @@ const http_api = {
     postRequest: async function (req, res) {
         this.parseUrl(req, res, async function(reqParam) {
             if (reqParam === 'newuser') {
+                // 调用用于实现用户注册的 API
                 const result = await users.userSignUp(req);
+                // 判断注册结果
                 if (result) {
                     return responseMsg(res, {
                         status: 200,
@@ -90,7 +94,9 @@ const http_api = {
                     })
                 }
             } else if (reqParam === 'session') {
+                // 调用用于实现用户登录的 API
                 const result = await users.userLogin(req);
+                // 判断登录结果
                 if (result) {
                     res.writeHead(200, {
                         // 'Set-Cookie': cookie.serialize({
@@ -118,7 +124,9 @@ const http_api = {
     putRequest: async function (req, res) {
         this.parseUrl(req, res, async function(reqParam) {
             if (isNumeric(reqParam)) {
+                // 调用用于实现按 ID 修改用户信息的 API
                 const result = await users.updateUser(req, reqParam);
+                // 判断修改结果
                 if (result) {
                     return responseMsg(res, {
                         status: 200,
@@ -143,7 +151,9 @@ const http_api = {
     deleteRequest: function (req, res) {
         this.parseUrl(req, res, async function(reqParam) {
             if (isNumeric(reqParam)) {
+                // 调用用于实现按 ID 删除用户的 API
                 const result = await users.deleteUser(reqParam);
+                // 判断删除结果
                 if (result) {
                     return responseMsg(res, {
                         status: 200,
