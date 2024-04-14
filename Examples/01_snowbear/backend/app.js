@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 // 引入HTTP API模块
-const http_api = require('./http_api');
+const http_api = require('./httpApi');
 
 // 设置服务器的端口号
 const port = 80;
@@ -33,6 +33,9 @@ function apiServer(req, res) {
             break;
         case 'POST':
             http_api.postRequest(req, res);
+            break;
+        case 'PUT':
+            http_api.putRequest(req, res);
             break;
         case 'DELETE':
             http_api.deleteRequest(req, res);

@@ -59,7 +59,7 @@ const usersDBApi = {
         }
     },
 
-    // 创建用于根据指定编号在 user 数据库中查询用户的 API
+    // 创建用于按 ID 查询用户的 API
     getUserById : async function(id) {
         try {
             await this.openCollect(collectName);
@@ -98,7 +98,7 @@ const usersDBApi = {
         }
     },
 
-    // 创建用于根据指定编号在 user 数据库中删除用户的 API
+    // 创建用于按 ID 删除用户的 API
     deleteUser : async function(id) {
         try {
             await this.openCollect(collectName);

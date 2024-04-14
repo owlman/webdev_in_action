@@ -1,98 +1,168 @@
-// 引入用户功能模块
-const users = require('./users');
-
+// 要实现的 HTTP API 列表：
+// | GET           | `/users/<用户的ID>`          | 用于实现用户信息查看功能。       |
 // | POST          | `/users/newuser`             | 用于实现新用户注册功能。         |
 // | POST          | `/users/session`             | 用于实现用户登录功能。           |
-// | GET           | `/users/<用户的ID>`          | 用于实现用户信息查看功能。       |
 // | PUT          | `/users/<用户的ID>`          | 用于实现用户信息修改功能。       |
 // | DELETE        | `/users/<用户的ID>`          | 用于实现用户信息删除功能。       |
 
-// 发送响应信息
-function responseMsg(res, err) {
-    res.writeHead(err.status, {
+// 引入用户功能模块
+const users = require('./users');
+
+// 发送特定响应状态和消息的函数
+function responseMsg(res, msg) {
+    res.writeHead(msg.status, {
         "Content-Type": "application/json"
     });
-    return res.end(err.message);
+    return res.end(msg.message);
 }
 
-// 判断是否为数字
-function isNumeric(n) {  
-    return !isNaN(parseFloat(n)) && isFinite(n);  
+// 用于判断字符串内容是否为数字的函数
+function isNumeric(str) {  
+    return !isNaN(parseFloat(str)) && isFinite(str);  
 } 
 
 // 定义 HTTP API 服务
 const http_api = {
-    // 处理  GET 请求
-    getRequest:  async function(req, res) {
+    // 解析请求 URL
+    parseUrl: function(req, res, callback) {
         const reqParam = req.url.split('/');
         if(reqParam.length < 1 || reqParam.length > 4) {
             return responseMsg(res, {
                 status: 400,
-                message: 'request_url_err'
+                message: 'request_url_error'
             });
         }        
         if (reqParam[1] === 'users') {
-            const userId = reqParam[2];
-            if(isNumeric(userId) {
-                return await users.getUser(req, res, responseMsg);
-            }
+            if(reqParam[2].length == 0) {
+                return responseMsg(res, {
+                     status: 400,
+                     message: 'request_url_error'
+                });
+             }
+            callback(reqParam[2]);
         } else {
             responseMsg(res, {
                 status: 400,
-                message: 'request_url_err'
+                message: 'request_url_error'
             });
         }
+    }, 
+
+    // 处理  GET 请求
+    getRequest:  async function(req, res) {
+        this.parseUrl(req, res, async function(reqParam) {
+            if (isNumeric(reqParam)) {
+                const userMsg = await users.getUserById(reqParam);
+                if (userMsg) {
+                    res.writeHead(200, {
+                        "Content-Type": "application/json",
+                    })
+                    return res.end(JSON.stringify(userMsg));
+                } else {
+                    return responseMsg(res, {
+                        status: 404,
+                        message: 'user_not_found'
+                    });
+                }
+            } else {
+                responseMsg(res, {
+                    status: 400,
+                    message: 'request_url_error'
+                })
+            }
+        });
     },
 
-    // 处理  PUT 请求
-    putRequest: async function (req, res) {
-        
-    },
-    
     // 处理  POST 请求
     postRequest: async function (req, res) {
-        const reqParam = req.url.split('/');
-        if(reqParam.length < 1 || reqParam.length > 4) {
-            return responseMsg(res, {
-                status: 400,
-                message: 'request_url_err'
-            });
-        }
-        
-        if (reqParam[1] === 'users') {
-            const operator = reqParam[2];
-            if(operator === 'newuser') {
-                users.userSignUp(req, res, responseMsg);
-            } else if(operator === 'session') {
-                users.userLogin(req, res, responseMsg);
+        this.parseUrl(req, res, async function(reqParam) {
+            if (reqParam === 'newuser') {
+                const result = await users.userSignUp(req);
+                if (result) {
+                    return responseMsg(res, {
+                        status: 200,
+                        message: 'user_sign_up_success'
+                    });
+                } else {
+                    return responseMsg(res, {
+                        status: 400,
+                        message: 'user_sign_up_failed'
+                    })
+                }
+            } else if (reqParam === 'session') {
+                const result = await users.userLogin(req);
+                if (result) {
+                    res.writeHead(200, {
+                        // 'Set-Cookie': cookie.serialize({
+                        //     'uid': result.uid
+                        // }),
+                        "Content-Type": "application/json"
+                    });
+                    res.end(JSON.stringify(result));
+                } else {
+                    return responseMsg(res, {
+                        status: 400,
+                        message: 'user_login_failed'
+                    })
+                }
+            } else {
+                return responseMsg(res, {
+                    status: 400,
+                    message: 'request_url_error'
+                });
             }
-        } else {
-            responseMsg(res, {
-                status: 400,
-                message: 'request_url_err'
-            });
-        }
+        })
+    },
+    
+    // 处理  PUT 请求
+    putRequest: async function (req, res) {
+        this.parseUrl(req, res, async function(reqParam) {
+            if (isNumeric(reqParam)) {
+                const result = await users.updateUser(req, reqParam);
+                if (result) {
+                    return responseMsg(res, {
+                        status: 200,
+                        message: 'user_update_success'
+                    });
+                } else {
+                    return responseMsg(res, {
+                        status: 400,
+                        message: 'user_update_failed'
+                    });
+                }
+            } else {
+                responseMsg(res, {
+                    status: 400,
+                    message: 'request_url_error'
+                })
+            }
+        });    
     },
 
     // 处理  DELETE 请求
     deleteRequest: function (req, res) {
-        const reqParam = req.url.split('/');
-        if(reqParam.length < 1 || reqParam.length > 4) {
-            return responseMsg(res, {
-                status: 400,
-                message: 'request_url_err'
-            });
-        }
-        
-        if (reqParam[1] === 'users') {
-            
-        } else {
-            responseMsg(res, {
-                status: 400,
-                message: 'request_url_err'
-            });
-        }
-    }
+        this.parseUrl(req, res, async function(reqParam) {
+            if (isNumeric(reqParam)) {
+                const result = await users.deleteUser(reqParam);
+                if (result) {
+                    return responseMsg(res, {
+                        status: 200,
+                        message: 'user_delete_success'
+                    });
+                } else {
+                    return responseMsg(res, {
+                        status: 400,
+                        message: 'user_delete_failed'
+                    });
+                }
+            } else {
+                responseMsg(res, {
+                    status: 400,
+                    message: 'request_url_error'
+                })
+            }
+        });    
+    }        
 }
 
 module.exports = http_api;
