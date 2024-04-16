@@ -1,4 +1,3 @@
-const queryString = require('querystring');
 // 引入用户数据操作模块
 const usersDBApi = require('./useUsersDB');
 
@@ -11,7 +10,8 @@ const usersApi = {
             formData += chunk;
         });
         req.on('end', async function () {
-            tmp = queryString.parse(formData.toString());
+            // console.log(formData);
+            tmp = JSON.parse(formData);
             if(tmp.username == undefined || tmp.password == undefined)
             {
                 return false;
@@ -25,7 +25,7 @@ const usersApi = {
         const that = this;
         return new Promise(async function(resolve, reject) {
             that.getFormData(req, async function(newuser) {
-                // console.log(newuser);
+                console.log(newuser);
                 newuser.address = "";
                 newuser.phone = "";
                 newuser.email = "";
@@ -50,6 +50,7 @@ const usersApi = {
 
     // 实现按 ID 查询用户的功能
     getUserById: async function(userid) {
+        // console.log(userid);
         const userinfo = await usersDBApi.getUserById(userid);
         return userinfo.length == 0 ? false : userinfo;
     },
@@ -69,6 +70,7 @@ const usersApi = {
     
     // 实现用户删除功能
     deleteUser: async function(userid) {
+        // console.log(userid);
         return await usersDBApi.deleteUser(userid);
     }
 }

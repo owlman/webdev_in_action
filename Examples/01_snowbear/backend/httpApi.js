@@ -81,6 +81,7 @@ const http_api = {
             if (reqParam === 'newuser') {
                 // 调用用于实现用户注册的 API
                 const result = await users.userSignUp(req);
+                console.log(result);
                 // 判断注册结果
                 if (result) {
                     return responseMsg(res, {
