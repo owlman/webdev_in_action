@@ -5,10 +5,18 @@ const app = express();
 // 设置当前 Web 服务的访问端口 
 const port = 3000;
 
+// 创建自定义的路由对象
+const router = require('./router');
+
 // 响应客户端对于“/”目录的HTTP GET请求
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>');
 })
+
+// 在此处新增一行代码，
+// 将针对 http://localhost:3000/api/* 这组 URL 的请求交给router处理，
+// 请注意：这里的“*”是一个通配符，可用于匹配任意字符串
+app.use('/api', router);
 
 // 设置当前服务启动时要监听的端口以及要执行的动作
 app.listen(port, () => {
