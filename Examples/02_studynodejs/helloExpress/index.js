@@ -22,3 +22,5 @@ app.use('/api', router);
 app.listen(port, () => {
     console.log(`请访问http://localhost:${port}/，按Ctrl+C终止服务！`);
 })
+
+module.exports = app;
