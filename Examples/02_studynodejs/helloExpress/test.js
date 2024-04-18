@@ -1,7 +1,6 @@
-// 引入supertest库，并创建一个测试实例
+// 引入supertest库，并创建一个测试用例
 const httpRequest = require('supertest');
-
-// 创建一个被测试的应用实例
+// 以模块的方式加载被测试的应用
 const app = require('../helloExpress');
 
 // 模拟发送 HTTP GET 请求
