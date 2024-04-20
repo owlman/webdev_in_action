@@ -1,3 +1,5 @@
+// 引入用于操作文件路径的Node.js模块
+const path = require('path'); 
 // 引入 Express.js 框架文件
 const express = require('express');
 // 创建一个 Express 应用实例
@@ -8,10 +10,9 @@ const port = 3000;
 // 创建自定义的路由对象
 const router = require('./router');
 
-// 响应客户端对于“/”目录的HTTP GET请求
-app.get('/', (req, res) => {
-    res.send('<h1>Hello World!</h1>');
-})
+// 将 static 目录设置为静态资源目录
+// 该目录可以被前端直接访问，因此用于部署静态网站
+app.use(express.static(path.join(__dirname, 'static')));
 
 // 在此处新增一行代码，
 // 将针对 http://localhost:3000/api/* 这组 URL 的请求交给router处理，
