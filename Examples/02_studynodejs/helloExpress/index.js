@@ -10,9 +10,13 @@ const port = 3000;
 // 创建自定义的路由对象
 const router = require('./router');
 
-// 将 static 目录设置为静态资源目录
-// 该目录可以被前端直接访问，因此用于部署静态网站
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(
+    // 将 static 目录设置为静态资源目录
+    // 该目录可以被前端直接访问，因此用于部署静态网站
+    path.join(__dirname, 'static'),
+    // 设置静态网站的默认首页
+    {index: 'index.htm'}
+));
 
 // 在此处新增一行代码，
 // 将针对 http://localhost:3000/api/* 这组 URL 的请求交给router处理，
