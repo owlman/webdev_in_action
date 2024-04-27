@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>个人信息查询</title>
+  </head>
+  <body>
+    <h1>请先登录你的留言板</h1>
+    <form action="/login" method="POST">
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td>密  码：</td>
+            <td><input type="password" name="pword"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="登录"></td>
+            <td>
+                <input type="reset" value="重置">
+                <a href="/signup">用户注册</a>
+            </td>        
+        </tr>
+    </table>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <script defer=“defer” src="/public/script/message.js"></script>    
+    <title>留言板</title>
+  </head>
+  <body>
+    <h1>留言板</h1>
+    <form action="/sendMessage" method="POST" id="messageForm">
+    <table>
+      <tr>
+        <td>你的姓名：</td>
+        <td><input type="text" name="name" id="name"></td>
+      </tr>
+      <tr>
+        <td>留言信息：</td>
+        <td><textarea name="message" id="message"></textarea></td>
+      </tr>
+      <tr>
+        <td><input type="submit"></td>
+        <td><input type="reset"></td>
+      </tr>
+    </table>
+    </form>
+    <div>
+      <h2>最新留言：</h2>
+      <table>
+        {{ each data }}
+        <tr>
+          <td>{{ $value.user }} 说： </td>
+          <td>{{ $value.message }} </td>
+        </tr>
+        {{ /each }}
+      </table>
+    </div>
+  </body>
+</html>
