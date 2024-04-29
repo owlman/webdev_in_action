@@ -7,6 +7,8 @@
 
 // 引入用户功能模块
 const users = require('./users');
+// 引入 cookie 模块
+const cookie = require('./cookie');
 
 // 发送特定响应状态和消息的函数
 function responseMsg(res, msg) {
@@ -99,10 +101,12 @@ const http_api = {
                 const result = await users.userLogin(req);
                 // 判断登录结果
                 if (result) {
-                    res.writeHead(200, {
-                        // 'Set-Cookie': cookie.serialize({
-                        //     'uid': result.uid
-                        // }),
+                        // 此处以头信息的形式向前端发送 Cookie 数据
+                        res.writeHead(200, {
+                        'Set-Cookie': cookie.serialize({
+                            'userid': result.uid,
+                            'islogin': true
+                        }),
                         "Content-Type": "application/json"
                     });
                     res.end(JSON.stringify(result));

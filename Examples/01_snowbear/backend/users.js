@@ -1,31 +1,31 @@
 // 引入用户数据操作模块
 const usersDBApi = require('./useUsersDB');
 
+// 定义一个用于获取表单数据的函数
+async function getFormData(req, callback) {
+    let formData = '';
+    req.on('data', function (chunk) {
+        formData += chunk;
+    });
+    req.on('end', async function () {
+        // console.log(formData);
+        tmp = JSON.parse(formData);
+        callback(tmp);
+    });
+}
+
 // 创建用户功能模块的对象
 const usersApi = {
-    // 用于获取表单数据的函数
-    getFormData: async function(req, callback) {
-        let formData = '';
-        req.on('data', function (chunk) {
-            formData += chunk;
-        });
-        req.on('end', async function () {
-            // console.log(formData);
-            tmp = JSON.parse(formData);
-            if(tmp.username == undefined || tmp.password == undefined)
-            {
-                return false;
-            }
-            callback(tmp);
-        });
-    },
-    
     // 实现用户注册功能
     userSignUp: async function(req) {
-        const that = this;
         return new Promise(async function(resolve, reject) {
-            that.getFormData(req, async function(newuser) {
-                console.log(newuser);
+            return getFormData(req, async function(newuser) {
+                if(newuser.username == undefined 
+                    || newuser.password == undefined)
+                {
+                    return resolve(false);
+                }    
+                //console.log(newuser);
                 newuser.address = "";
                 newuser.phone = "";
                 newuser.email = "";
@@ -37,12 +37,16 @@ const usersApi = {
     
     // 实现用户登录功能
     userLogin: async function(req) {
-        const that = this;
         return new Promise(async function(resolve, reject) {    
-            await that.getFormData(req, async function(loginData) {
+            await getFormData(req, async function(loginData) {
                 // console.log(loginData);
+                if(loginData.username == undefined 
+                    || loginData.password == undefined)
+                {
+                    return resolve(false);
+                }
                 const tmp = await usersDBApi.checkUser(loginData);
-                resolve(tmp.length == 0 ? false : tmp);
+                resolve(tmp.length == 0 ? false : tmp[0]);
             }); 
         });
     },
@@ -52,15 +56,14 @@ const usersApi = {
     getUserById: async function(userid) {
         // console.log(userid);
         const userinfo = await usersDBApi.getUserById(userid);
-        return userinfo.length == 0 ? false : userinfo;
+        return userinfo.length == 0 ? false : userinfo[0];
     },
 
     
     // 实现用户信息修改功能
     updateUser: async function(req, userid) {
-        const that = this;
         return new Promise(async function(resolve, reject) {
-            that.getFormData(req, async function(userData) {
+            await getFormData(req, async function(userData) {
                 // console.log(userData);
                 resolve(await usersDBApi.updateUser(userid, userData));
             });
