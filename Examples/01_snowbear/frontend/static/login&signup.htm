@@ -13,7 +13,10 @@
     <link rel="stylesheet" 
         href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- 引入自定义的CSS样式文件 -->
-    <link rel="stylesheet" href="styles/custom.css"><title>用户登录与注册</title>
+    <link rel="stylesheet" href="styles/custom.css">
+    <!-- 引入自定义的JavaScript脚本文件 -->
+    <script defer src="scripts/login&signup.js"></script>
+    <title>用户登录与注册</title>
 </head>
 <body>
     <!-- 导航栏区域开始-->
@@ -99,19 +102,28 @@
                     <div class="tab-content container p-1">
                         <div class="tab-pane fade show active" id="loginTab"
                                 role="tabpanel" aria-labelledby="loginTab-tab">
-                                <form class="p-3 m-0"
-                                    method="post" action="http://example.com/api">
+                                <form class="p-3 m-0" id="loginForm"
+                                    method="post" 
+                                    action="http://localhost/users/session">
                                     <div class="mb-3">
-                                        <input type="text" class="form-control col-5" id="username" name="username" placeholder="请输入用户名">
+                                        <input type="text" class="form-control" 
+                                            name="username" placeholder="请输入用户名">
+                                        <div id="checkname" class="text-danger mx-2">
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+                                    <div class="mb-3 form-group">
+                                        <input type="password" class="form-control" 
+                                            name="password" placeholder="请输入密码">
+                                        <div id="checkpwd" class="text-danger mx-2">
+                                        </div>
                                     </div>
                                     <div class="mt-3 p-2">
-                                        <button type="submit" class="btn btn-light btn-outline-dark">
+                                        <button type="submit" 
+                                            class="btn btn-light btn-outline-dark">
                                             登录
                                         </button>
-                                        <button type="reset" class="btn btn-dark">
+                                        <button type="reset" 
+                                            class="btn btn-dark mx-3">
                                             重置
                                         </button>
                                     </div>
@@ -119,20 +131,34 @@
                         </div>
                         <div class="tab-pane fade" id="signupTab" role="tabpanel"
                             aria-labelledby="signupTab-tab">
-                            <form class="p-3 m-0"
-                                method="post" action="http://example.com/api">
+                            <form class="p-3 m-0" id="signupForm"
+                                method="post" action="http://localhost/users/newuser">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+                                    <input type="text" class="form-control" 
+                                        name="username" placeholder="请输入用户名">
+                                    <div id="checkname" class="text-danger mx-2">
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码">
+                                    <input type="password" class="form-control" 
+                                        name="password" placeholder="请输入您的密码">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="请再次输入密码">
+                                    <input type="password" class="form-control" 
+                                        id="password" name="password" 
+                                        placeholder="请再次输入密码">
+                                    <div id="checkpwd" class="text-danger mx-2">
+                                    </div>
                                 </div>
                                 <div class="mt-3 p-2">
-                                    <button type="submit" class="btn btn-light btn-outline-dark"">注册</button>
-                                    <button type="reset" class="btn btn-dark">重置</button>
+                                    <button type="submit" 
+                                        class="btn btn-light btn-outline-dark"">
+                                        注册
+                                    </button>
+                                    <button type="reset" 
+                                        class="btn btn-dark mx-3">
+                                        重置
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -141,33 +167,34 @@
             </aside>
         </section>
     </main>
-        <!-- 页脚区域开始 -->
-        <footer class="p-3 text-light">
-            <section id="contact" class="container">
-                <h4>联系我们：</h4>
-                <div class="row m-3">
-                    <!-- 使用 <i> 标记的 class 属性插入来自第三方库的图标 -->
-                    <ul class="list-unstyled col-5">
-                        <li><i class="fa fa-phone"></i> 123-456-7890</li>
-                        <li><i class="fa fa-envelope"></i> message@snowbear.com</li>
-                        <li><i class="fa fa-map-marker"></i> 上海市浦东新区某某路X号</li>
-                    </ul>
-                    <ul class="list-unstyled col-4">
-                        <li><i class="fab fa-twitter"></i> @SnowBear</li>
-                        <li><i class="fab fa-weibo"></i> @SnowBear</li>
-                        <li><i class="fab fa-facebook-f"></i> 凌雪冰熊官方主页</li>
-                    </ul>
-                    <div class="col-3 text-center">
-                        <i class="fab fa-weixin fa-3x"></i>
-                        <p>关注凌雪冰熊公众号</p>
-                    </div>
+    <!-- 主体区域结束 -->
+    <!-- 页脚区域开始 -->
+    <footer class="p-3 text-light">
+        <section id="contact" class="container">
+            <h4>联系我们：</h4>
+            <div class="row m-3">
+                <!-- 使用 <i> 标记的 class 属性插入来自第三方库的图标 -->
+                <ul class="list-unstyled col-5">
+                    <li><i class="fa fa-phone"></i> 123-456-7890</li>
+                    <li><i class="fa fa-envelope"></i> message@snowbear.com</li>
+                    <li><i class="fa fa-map-marker"></i> 上海市浦东新区某某路X号</li>
+                </ul>
+                <ul class="list-unstyled col-4">
+                    <li><i class="fab fa-twitter"></i> @SnowBear</li>
+                    <li><i class="fab fa-weibo"></i> @SnowBear</li>
+                    <li><i class="fab fa-facebook-f"></i> 凌雪冰熊官方主页</li>
+                </ul>
+                <div class="col-3 text-center">
+                    <i class="fab fa-weixin fa-3x"></i>
+                    <p>关注凌雪冰熊公众号</p>
                 </div>
-            </section>
-            <section class="container text-center m-3 ">
-                <hr>
-                <span>&copy; 2023 凌雪冰熊有限公司</span>
-            </section>
-        </footer>
-        <!-- 页脚区域开始 -->
+            </div>
+        </section>
+        <section class="container text-center m-3 ">
+            <hr>
+            <span>&copy; 2023 凌雪冰熊有限公司</span>
+        </section>
+    </footer>
+    <!-- 页脚区域开始 -->
 </body>
 </html>
