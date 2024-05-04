@@ -92,7 +92,7 @@ const http_api = {
                     });
                 } else {
                     return responseMsg(res, {
-                        status: 400,
+                        status: 403,
                         message: 'user_sign_up_failed'
                     })
                 }
@@ -112,7 +112,7 @@ const http_api = {
                     res.end(JSON.stringify(result));
                 } else {
                     return responseMsg(res, {
-                        status: 400,
+                        status: 403,
                         message: 'user_login_failed'
                     })
                 }
@@ -139,7 +139,7 @@ const http_api = {
                     });
                 } else {
                     return responseMsg(res, {
-                        status: 400,
+                        status: 403,
                         message: 'user_update_failed'
                     });
                 }
@@ -166,7 +166,7 @@ const http_api = {
                     });
                 } else {
                     return responseMsg(res, {
-                        status: 400,
+                        status: 403,
                         message: 'user_delete_failed'
                     });
                 }

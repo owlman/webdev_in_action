@@ -1,55 +1,84 @@
-// 以下代码用于处理 id="loginForm" 的表单元素
-const loginForm = document.querySelector('#loginForm');
-
-// 检查用户名的输入
-loginForm.username.addEventListener('blur', function() {
-    const vmsg = loginForm.querySelector('#checkname');
-    if (!this.value) {
+// 以下是一些表单的通用处理代码
+// 添加输入提示信息
+function addHint(form, divid, hintText) {
+    const hint = form.querySelector('#' + divid);
+    hint.innerHTML = hintText;
+    hint.classList.add('invalid-feedback');
+}
+// 移除输入提示信息
+function removeHint(form, divid) {
+    const hint = form.querySelector('#' + divid);
+    hint.innerHTML = '';
+    hint.classList.remove('invalid-feedback');
+}
+// 移除文本框验证样式
+function removeValidation(input) {
+    input.classList.remove('is-valid');
+    input.classList.remove('is-invalid');
+}
+// 检查用户名文本框的输入
+function checkUsername(form) {
+    const inputText = form.username;
+    if (!inputText.value) {
         // 用户名为空时的处理逻辑
-        vmsg.innerText = '用户名不能为空！';
-        vmsg.classList.add('invalid-feedback');
-        loginForm.username.classList.add('is-invalid');
-    } else if(!/^[a-zA-Z0-9]+$/.test(this.value)) {
+        inputText.classList.add('is-invalid');
+        addHint(form,'checkname', '用户名不能为空！');
+    } else if(!/^[a-zA-Z0-9]+$/.test(inputText.value)) {
         // 用户名包含非法字符时的处理逻辑
-        vmsg.innerText = '用户名只能包含字母和数字空！';
-        vmsg.classList.add('invalid-feedback');
-        loginForm.username.classList.add('is-invalid');;
+        inputText.classList.add('is-invalid');
+        addHint(form, 'checkname', '用户名只能包含字母和数字！');
     } else {
         // 用户名合法时的处理逻辑
-        vmsg.innerText = '';
-        loginForm.username.classList.remove('is-invalid');
-        loginForm.username.classList.add('is-valid');
+        inputText.classList.remove('is-invalid');
+        removeHint(form, 'checkname');
     }
-})
-
-// 检查密码的输入
-loginForm.password.addEventListener('blur', function() {
-    const vmsg = loginForm.querySelector('#checkpwd');
-    if (!this.value) {
+}
+// 检查密码文本框的输入
+function checkPassword(form) {
+    const inputText = form.password;
+    if (!inputText.value) {
         // 密码为空时的处理逻辑
-        vmsg.innerText = '密码不能为空！';
-        vmsg.classList.add('invalid-feedback');
-        loginForm.password.classList.add('is-invalid');
-    } else if(this.value.length < 6) {
+        inputText.classList.add('is-invalid');
+        addHint(form, 'checkpwd', '密码不能为空！');
+    } else if(inputText.value.length < 6) {
         // 密码长度小于6时的处理逻辑
-        vmsg.innerText = '密码长度不能小于6！';
-        vmsg.classList.add('invalid-feedback');
-        loginForm.password.classList.add('is-invalid');
+        inputText.classList.add('is-invalid');
+        addHint(form, 'checkpwd', '密码长度不能小于6！');
     } else {
         // 密码输入合法时的处理逻辑
-        vmsg.innerText = '';
-        loginForm.password.classList.remove('is-invalid');
-        loginForm.password.classList.add('is-valid');
+        inputText.classList.remove('is-invalid');
+        removeHint(form, 'checkpwd');
     }
-})
+}
 
+// 以下代码用于处理 id="loginForm" 的表单元素
+const loginForm = document.querySelector('#loginForm');
+// 在用户名文本框获得焦点时移除输入提示信息
+loginForm.username.addEventListener('focus', function() {
+    this.classList.remove('is-invalid');
+    removeHint(loginForm, 'checkname');
+})
+// 在用户名文本框失去焦点时检查输入
+loginForm.username.addEventListener('blur', function() {
+    checkUsername(loginForm);
+});
+// 在密码文本框获得焦点时移除输入提示信息
+loginForm.password.addEventListener('focus', function() {
+    this.classList.remove('is-invalid');
+    removeHint(loginForm, 'checkpwd');
+});
+// 在密码文本框失去焦点时检查输入
+loginForm.password.addEventListener('blur', function() {
+    checkPassword(loginForm);
+});
 // 提交表单时的处理逻辑
 loginForm.addEventListener('submit', async function(event) {
     event.preventDefault(); // 阻止表单默认提交行为
     // 检查表单是否通过验证
     if (!loginForm.username.value || !loginForm.password.value) {
         // 用户名或密码为空时的处理逻辑
-        window.alert('用户名和密码不能为空！');
+        checkUsername(loginForm);
+        checkPassword(loginForm);
         return;
     }
     // 收集表单数据
@@ -68,8 +97,10 @@ loginForm.addEventListener('submit', async function(event) {
         });
         if(res.status == 200) {
             // 登录成功时的处理逻辑
-            window.alert('登录成功');
-        } else {
+            const data = await res.json()
+            document.cookie = `userid=${data.uid}`;
+            window.location.href = '/userinfo.htm';
+        } else if(res.status == 403) {
             // 登录失败时的处理逻辑
             window.alert('登录失败');
         }
@@ -78,21 +109,14 @@ loginForm.addEventListener('submit', async function(event) {
         window.alert('请求出错');
     }
 })
-
 // 重置表单的处理逻辑
 loginForm.addEventListener('reset', function() {
-    // 清除表单验证信息
-    let vmsg = loginForm.querySelector('#checkname');
-    vmsg.innerText = '';
-    vmsg.classList.remove('invalid-feedback');
-    vmsg = loginForm.querySelector('#checkpwd');
-    vmsg.innerText = ''
-    vmsg.classList.remove('invalid-feedback');
+    // 清除表单输入提示
+    removeHint(this, 'checkname');
+    removeHint(this,'checkpwd');
     // 清除表单验证样式;
-    loginForm.username.classList.remove('is-valid');
-    loginForm.username.classList.remove('is-invalid');
-    loginForm.password.classList.remove('is-valid');
-    loginForm.password.classList.remove('is-invalid');
+    removeValidation(loginForm.username);
+    removeValidation(loginForm.password);
     // 重置表单
     loginForm.reset();
     
@@ -100,86 +124,63 @@ loginForm.addEventListener('reset', function() {
 
 // 以下代码用于处理 id="signupForm" 的表单元素
 const signupForm = document.querySelector('#signupForm');
-
-// 检查用户名的输入
+// 在用户名文本框获得焦点时移除输入提示信息
+signupForm.username.addEventListener('foucs', function() {
+    this.classList.remove('is-invalid');
+    removeHint(signupForm, 'checkname')
+});
+// 在用户名文本框失去焦点时检查输入
 signupForm.username.addEventListener('blur', function() {
-    const vmsg = signupForm.querySelector('#checkname');
-    if (!this.value) {
-        // 用户名为空时的处理逻辑
-        vmsg.innerText = '用户名不能为空！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.username.classList.add('is-invalid');
-    } else if(!/^[a-zA-Z0-9]+$/.test(this.value)) {
-        // 用户名包含非法字符时的处理逻辑
-        vmsg.innerText = '用户名只能包含字母和数字空！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.username.classList.add('is-invalid');
-    } else {
-        // 用户名合法时的处理逻辑
-        vmsg.innerText = '';
-        signupForm.username.classList.remove('is-invalid');
-        signupForm.username.classList.add('is-valid');
-    }
+    checkUsername(signupForm);
+});
+// 在密码文本框获得焦点时移除输入提示信息
+signupForm.password.addEventListener('focus', function() {
+    this.classList.remove('is-invalid');
+    removeHint(signupForm, 'checkpwd');
 })
-
-// 检查密码的输入
+// 在密码文本框失去焦点时检查输入
 signupForm.password.addEventListener('blur', function() {
-    const vmsg = signupForm.querySelector('#checkpwd');
-    if (!this.value) {
-        // 密码为空时的处理逻辑
-        vmsg.innerText = '密码不能为空！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.password.classList.add('is-invalid');
-    } else if(this.value.length < 6) {
-        // 密码长度小于6时的处理逻辑
-        vmsg.innerText = '密码长度不能小于6！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.password.classList.add('is-invalid');
-    } else {
-        // 密码输入合法时的处理逻辑
-        vmsg.innerText = '';
-        signupForm.password.classList.remove('is-invalid');
-        signupForm.password.classList.add('is-valid');
-    }
+    checkPassword(signupForm);
+});
+// 在用于确认密码的文本框获得焦点时移除输入提示信息
+signupForm.confirmpwd.addEventListener('focus', function() {
+    this.classList.remove('is-invalid');
+    removeHint(signupForm, 'confirmpwd');
 })
-
-// 检查确认密码的输入
+// 在用于确认密码的文本框失去焦点时检查输入
 signupForm.confirmpwd.addEventListener('blur', function() {
-    const vmsg = signupForm.querySelector('#confirmpwd');
     if (!this.value) {
         // 确认密码为空时的处理逻辑
-        vmsg.innerText = '确认密码不能为空！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.confirmpwd.classList.add('is-invalid');
+        this.classList.add('is-invalid');
+        addHint(signupForm,'confirmpwd', '请确认您的密码！');
     } else if(this.value !== signupForm.password.value) {
         // 确认密码与密码不一致时的处理逻辑
-        vmsg.innerText = '确认密码与密码不一致！';
-        vmsg.classList.add('invalid-feedback');
-        signupForm.confirmpwd.classList.add('is-invalid');
+        this.classList.add('is-invalid');
+        addHint(signupForm, 'confirmpwd', 
+            '您输入的确认密码与之前不一致！');
     } else {
         // 确认密码输入合法时的处理逻辑
-        vmsg.innerText = '';
-        signupForm.confirmpwd.classList.remove('is-invalid');
-        signupForm.confirmpwd.classList.add('is-valid');
+        this.classList.remove('is-invalid');
+        removeHint('confirmpwd');
     }
-})
-
+});
 // 提交表单时的处理逻辑
 signupForm.addEventListener('submit', async function(event) {
     event.preventDefault(); // 阻止表单默认提交行为
     // 检查表单是否通过验证
     if (!signupForm.username.value 
-        || !signupForm.password.value 
-        || !signupForm.confirmpwd.value) {
+        || !signupForm.password.value) {
         // 用户名或密码为空时的处理逻辑
-        window.alert('用户名、密码和确认密码不能为空！');
+        checkUsername(signupForm);
+        checkPassword(signupForm);
         return;
-    } else if(signupForm.password.value !== signupForm.confirmpwd.value) {
+    } else if(signupForm.password.value 
+        !== signupForm.confirmpwd.value) {
         // 密码与确认密码不一致时的处理逻辑
-        window.alert('密码与确认密码不一致！');
+        signupForm.confirmpwd.classList.add('is-invalid');
+        addHint(signupForm, 'confirmpwd', '密码与确认密码不一致！');
         return;
     }
-
     // 收集表单数据
     const formData = {
         username: signupForm.username.value,
@@ -197,7 +198,9 @@ signupForm.addEventListener('submit', async function(event) {
         if(res.status == 200) {
             // 注册成功时的处理逻辑
             window.alert('注册成功');
-        } else {
+            // 刷新当前页面
+            window.location.reload();
+        } else if(res.status == 403){
             // 注册失败时的处理逻辑
             window.alert('注册失败');
         }
@@ -206,24 +209,16 @@ signupForm.addEventListener('submit', async function(event) {
         window.alert('请求出错');
     }
 })
-
 // 重置表单的处理逻辑
 signupForm.addEventListener('reset', function() {
-    // 清除表单验证信息
-    let vmsg = signupForm.querySelector('#checkname');
-    vmsg.innerText = '';
-    vmsg.classList.remove('invalid-feedback');
-    vmsg = signupForm.querySelector('#checkpwd');
-    vmsg.innerText = '';
-    vmsg.classList.remove('invalid-feedback');
-    vmsg = signupForm.querySelector('#confirmpwd');
-    vmsg.innerText = '';
-    vmsg.classList.remove('invalid-feedback');
+    // 清除表单输入提示
+    removeHint(this, 'checkname');
+    removeHint(this, 'checkpwd');
+    removeHint(this, 'confirmpwd');
     // 清除表单验证样式;
-    signupForm.username.classList.remove('is-valid');
-    signupForm.username.classList.remove('is-invalid');
-    signupForm.password.classList.remove('is-valid');
-    signupForm.password.classList.remove('is-invalid');
-    signupForm.confirmpwd.classList.remove('is-valid');
-    signupForm.confirmpwd.classList.remove('is-invalid');
+    removeValidation(signupForm.username);
+    removeValidation(signupForm.password);
+    removeValidation(signupForm.confirmpwd);
+    // 重置表单
+    signupForm.reset();
 })
