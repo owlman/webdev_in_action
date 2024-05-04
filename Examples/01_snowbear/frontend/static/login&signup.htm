@@ -77,6 +77,7 @@
     <!-- 导航栏区域结束 -->
     <!-- 主体区域开始 -->
     <main class="container-fluid p-5">
+        <!-- 在此处填充网页的主体内容 -->
         <section class="row">
             <aside class="col-5 text-center mx-2 p-0">
                 <img src="./img/shop1.jpg" class="img-fluid w-75 border border-light border-4">
@@ -101,34 +102,36 @@
                     </ul>
                     <div class="tab-content container p-1">
                         <div class="tab-pane fade show active" id="loginTab"
-                                role="tabpanel" aria-labelledby="loginTab-tab">
-                                <form class="p-3 m-0" id="loginForm"
-                                    method="post" 
-                                    action="http://localhost/users/session">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" 
-                                            name="username" placeholder="请输入用户名">
-                                        <div id="checkname" class="mx-2"></div>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <input type="password" class="form-control" 
-                                            name="password" placeholder="请输入密码">
-                                        <div id="checkpwd" class="mx-2"></div>
-                                    </div>
-                                    <div class="mt-3 p-2">
-                                        <button type="submit" 
-                                            class="btn btn-light btn-outline-dark">
-                                            登录
-                                        </button>
-                                        <button type="reset" 
-                                            class="btn btn-dark mx-3">
-                                            重置
-                                        </button>
-                                    </div>
-                                </form>                 
+                            role="tabpanel" aria-labelledby="loginTab-tab">
+                            <!-- 在此处插入用于执行用户登录操作的表单元素 -->
+                            <form class="p-3 m-0" id="loginForm"
+                                method="post" 
+                                action="http://localhost/users/session">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" 
+                                        name="username" placeholder="请输入用户名">
+                                    <div id="checkname" class="mx-2"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <input type="password" class="form-control" 
+                                        name="password" placeholder="请输入密码">
+                                    <div id="checkpwd" class="mx-2"></div>
+                                </div>
+                                <div class="mt-3 p-2">
+                                    <button type="submit" 
+                                        class="btn btn-light btn-outline-dark">
+                                        登录
+                                    </button>
+                                    <button type="reset" 
+                                        class="btn btn-dark mx-3">
+                                        重置
+                                    </button>
+                                </div>
+                            </form>                 
                         </div>
-                        <div class="tab-pane fade" id="signupTab" role="tabpanel"
-                            aria-labelledby="signupTab-tab">
+                        <div class="tab-pane fade" id="signupTab" 
+                            role="tabpanel" aria-labelledby="signupTab-tab">
+                            <!-- 在此处插入用于执行用户注册操作的表单元素 -->
                             <form class="p-3 m-0" id="signupForm"
                                 method="post" action="http://localhost/users/newuser">
                                 <div class="mb-3">
