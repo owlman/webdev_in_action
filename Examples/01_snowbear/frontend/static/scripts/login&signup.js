@@ -57,7 +57,7 @@ const loginForm = document.querySelector('#loginForm');
 loginForm.username.addEventListener('focus', function() {
     this.classList.remove('is-invalid');
     removeHint(loginForm, 'checkname');
-})
+});
 // 在用户名文本框失去焦点时检查输入
 loginForm.username.addEventListener('blur', function() {
     checkUsername(loginForm);
@@ -84,8 +84,9 @@ loginForm.addEventListener('submit', async function(event) {
     // 收集表单数据
     const formData = {
         username: loginForm.username.value,
-        password: loginForm.password.value
+        password: md5(loginForm.password.value)
     };
+    console.log(formData);
     // 发送用户登录请求
     try {
         const res = await fetch(loginForm.action, {
@@ -184,7 +185,7 @@ signupForm.addEventListener('submit', async function(event) {
     // 收集表单数据
     const formData = {
         username: signupForm.username.value,
-        password: signupForm.password.value
+        password: md5(signupForm.password.value)
     };
     // 发送用户注册请求
     try {

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "blueimp-md5": "^2.19.0",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "fontawesome": "^5.6.3"
