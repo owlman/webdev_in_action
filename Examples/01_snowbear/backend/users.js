@@ -39,7 +39,7 @@ const usersApi = {
     userLogin: async function(req) {
         return new Promise(async function(resolve, reject) {    
             await getFormData(req, async function(loginData) {
-                console.log(loginData);
+                // console.log(loginData);
                 if(loginData.username == undefined 
                     || loginData.password == undefined)
                 {
@@ -79,4 +79,4 @@ const usersApi = {
 }
 
 module.exports = usersApi;
-
+ 

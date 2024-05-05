@@ -16,7 +16,7 @@ const usersDBApi = {
         try {
             if(typeof this.conn == 'undefined') {
                 this.conn = await client.connect();
-                console.log('数据库连接成功！' );  
+                // console.log('数据库连接成功！' );  
             }
             if(typeof this.collect == 'undefined' || 
                 this.collect.collectName !== collectName) {
