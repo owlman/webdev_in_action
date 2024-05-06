@@ -31,6 +31,7 @@ function checkUsername(form) {
         // 用户名合法时的处理逻辑
         inputText.classList.remove('is-invalid');
         removeHint(form, 'checkname');
+        inputText.classList.add('is-valid');
     }
 }
 // 检查密码文本框的输入
@@ -48,6 +49,7 @@ function checkPassword(form) {
         // 密码输入合法时的处理逻辑
         inputText.classList.remove('is-invalid');
         removeHint(form, 'checkpwd');
+        inputText.classList.add('is-valid');
     }
 }
 
@@ -56,6 +58,7 @@ const loginForm = document.querySelector('#loginForm');
 // 在用户名文本框获得焦点时移除输入提示信息
 loginForm.username.addEventListener('focus', function() {
     this.classList.remove('is-invalid');
+    this.classList.remove('is-valid');
     removeHint(loginForm, 'checkname');
 });
 // 在用户名文本框失去焦点时检查输入
@@ -65,6 +68,7 @@ loginForm.username.addEventListener('blur', function() {
 // 在密码文本框获得焦点时移除输入提示信息
 loginForm.password.addEventListener('focus', function() {
     this.classList.remove('is-invalid');
+    this.classList.remove('is-valid');
     removeHint(loginForm, 'checkpwd');
 });
 // 在密码文本框失去焦点时检查输入
@@ -128,6 +132,7 @@ const signupForm = document.querySelector('#signupForm');
 // 在用户名文本框获得焦点时移除输入提示信息
 signupForm.username.addEventListener('foucs', function() {
     this.classList.remove('is-invalid');
+    this.classList.remove('is-valid');
     removeHint(signupForm, 'checkname')
 });
 // 在用户名文本框失去焦点时检查输入
@@ -137,6 +142,7 @@ signupForm.username.addEventListener('blur', function() {
 // 在密码文本框获得焦点时移除输入提示信息
 signupForm.password.addEventListener('focus', function() {
     this.classList.remove('is-invalid');
+    this.classList.remove('is-valid');
     removeHint(signupForm, 'checkpwd');
 })
 // 在密码文本框失去焦点时检查输入
@@ -146,6 +152,7 @@ signupForm.password.addEventListener('blur', function() {
 // 在用于确认密码的文本框获得焦点时移除输入提示信息
 signupForm.confirmpwd.addEventListener('focus', function() {
     this.classList.remove('is-invalid');
+    this.classList.remove('is-valid');
     removeHint(signupForm, 'confirmpwd');
 })
 // 在用于确认密码的文本框失去焦点时检查输入
@@ -163,6 +170,7 @@ signupForm.confirmpwd.addEventListener('blur', function() {
         // 确认密码输入合法时的处理逻辑
         this.classList.remove('is-invalid');
         removeHint('confirmpwd');
+        this.classList.add('is-valid');
     }
 });
 // 提交表单时的处理逻辑
@@ -198,7 +206,7 @@ signupForm.addEventListener('submit', async function(event) {
         });
         if(res.status == 200) {
             // 注册成功时的处理逻辑
-            window.alert('注册成功');
+            window.alert('注册成功，请登录！');
             // 刷新当前页面
             window.location.reload();
         } else if(res.status == 403){
