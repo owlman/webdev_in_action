@@ -6,10 +6,23 @@
         <title>Image to Base64</title>
     </head>
     <body>
-        <!-- 先设置一个用于上传图像的输入元素 -->
-        <input type="file" id="inputImage" />
-        
-        <!-- 然后设置一个用于显示图像的输出元素 -->
-        <img id="outputImage" />
+        <!--  使用 FileReader 对象将用户上传的图形文件读取为 base64 编码 -->
+        <div>
+            <!-- 先设置一个用于上传图像的输入元素 -->
+            <input type="file" id="inputImage" />      
+            <br />
+            <!-- 然后设置一个用于显示图像的输出元素 -->
+            <img id="outputImage" />
+        </div>
+
+        <!-- 使用 Canvas 组件将指定 URL 的图形读取为 base64 编码 -->
+        <div>
+            <!-- 设置一个用于指定图形 URL 的输入元素 -->
+            <input type="text" id="inputURL" placeholder="请输入图像URL" />
+            <button id="btnGetImage">获取图像</button> 
+            <br />
+            <!-- 设置一个Cavas元素，用于绘制用户指定的图形 -->
+            <canvas id="demoCanvas" width="200" height="200"></canvas>
+        </div>
     </body>
 </html>
