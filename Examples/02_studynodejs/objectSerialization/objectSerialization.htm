@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <script defer src="script/objectSerialization.js"></script>
+        <title>数据对象的序列化</title>
+    </head>
+    <body>
+        <!-- 在此处构建一个让用户输入数据的表单元素 -->
+        <form id="demoForm">
+            <input type="text" name="name" 
+                placeholder="请输入你的姓名" />
+            <br />
+            <label>
+                请设置你的头像：
+                <input type="file" name="photo" style="display: none;" />
+                <input type="button" value="上传文件" 
+                    onclick="document.querySelector('#demoForm').photo.click()" /> 
+            </label>
+            <br />
+            <textarea name="intro" rows="5" cols="30" 
+                placeholder="请输入你的个人简介"></textarea>
+            <br />
+            <input type="submit" value="提交" />
+        </form>
+    </body>
+</html>
