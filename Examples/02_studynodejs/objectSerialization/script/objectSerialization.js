@@ -1,4 +1,4 @@
- const inputForm = document.querySelector("#demoForm");
+const inputForm = document.querySelector("#demoForm");
 const formData  = { // 创建将用于存储表单数据的对象
     "userName": "",
     "userIntro": "",
