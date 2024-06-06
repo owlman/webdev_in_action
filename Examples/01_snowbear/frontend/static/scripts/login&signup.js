@@ -104,6 +104,9 @@ loginForm.addEventListener('submit', async function(event) {
             // 登录成功时的处理逻辑
             const data = await res.json()
             document.cookie = `userid=${data.uid}`;
+            // 在此处将后端返回的用户数据序列化
+            // 并实现在sessionStorage对象中的持久化存储
+            sessionStorage.setItem('userData', JSON.stringify(data));
             window.location.href = '/userinfo.htm';
         } else if(res.status == 403) {
             // 登录失败时的处理逻辑
