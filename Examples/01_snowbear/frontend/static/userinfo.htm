@@ -1,14 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- 引入Bootstrap框架的CSS样式文件 -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- 引入Bootstrap框架需要加载的脚本文件 -->       
+    <script defer src="./node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <!-- 引入Bootstrap框架的JavaScript脚本文件 -->
+    <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- 引入FontAwesome图标库定义的样式文件 -->
+    <link rel="stylesheet" 
+        href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- 引入自定义的CSS样式文件 -->
+    <link rel="stylesheet" href="styles/custom.css">
+    <!-- 引入blueimp-md5库的JavaScript脚本文件 -->
+    <script src="./node_modules/blueimp-md5/js/md5.min.js"></script>
+    <!-- 引入自定义的JavaScript脚本文件 -->
+    <script defer src="scripts/userInfo.js"></script>
+    <title>用户个人信息管理</title>
 </head>
 <body>
-    <script>
-            const userData = JSON.parse(sessionStorage.getItem("userData"))
-            console.log(userData);
-    </script>
+    <!-- 导航栏区域开始-->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-text">
+        <div class="container-fluid p-2">
+            <a class="navbar-brand" href="#">
+                <img src="./img/logo.png"  width="60" class="d-inline-block">
+                <span class="fs-4">凌雪冰熊</span>
+            </a>
+            <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" 
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.htm">
+                            首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./news.htm">新闻活动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./show.htm">产品展示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./join.htm">申请加盟</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                            href="#" id="navbarDropdown" 
+                            role="button" data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                            更多信息
+                        </a>
+                        <ul id="dropdown-menu" 
+                            class="dropdown-menu" 
+                            aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">企业文化</a></li>
+                            <li><a class="dropdown-item" href="#">企业荣誉</a></li>
+                            <li><a class="dropdown-item" href="#">企业历程</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control" type="search" 
+                        placeholder="搜索关键字" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa fa-search fa-lg"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- 导航栏区域结束 -->
+    <!-- 主体区域开始 -->
+    <main class="container-fluid p-5">
+        <!-- 在此处填充网页的主体内容 -->
+    </main>
+    <!-- 主体区域结束 -->
+    <!-- 页脚区域开始 -->
+    <footer class="p-3 text-light">
+        <section id="contact" class="container">
+            <h4>联系我们：</h4>
+            <div class="row m-3">
+                <!-- 使用 <i> 标记的 class 属性插入来自第三方库的图标 -->
+                <ul class="list-unstyled col-5">
+                    <li><i class="fa fa-phone"></i> 123-456-7890</li>
+                    <li><i class="fa fa-envelope"></i> message@snowbear.com</li>
+                    <li><i class="fa fa-map-marker"></i> 上海市浦东新区某某路X号</li>
+                </ul>
+                <ul class="list-unstyled col-4">
+                    <li><i class="fab fa-twitter"></i> @SnowBear</li>
+                    <li><i class="fab fa-weibo"></i> @SnowBear</li>
+                    <li><i class="fab fa-facebook-f"></i> 凌雪冰熊官方主页</li>
+                </ul>
+                <div class="col-3 text-center">
+                    <i class="fab fa-weixin fa-3x"></i>
+                    <p>关注凌雪冰熊公众号</p>
+                </div>
+            </div>
+        </section>
+        <section class="container text-center m-3 ">
+            <hr>
+            <span>&copy; 2023 凌雪冰熊有限公司</span>
+        </section>
+    </footer>
+    <!-- 页脚区域开始 -->
 </body>
 </html>

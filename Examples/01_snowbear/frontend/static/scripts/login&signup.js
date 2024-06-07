@@ -53,6 +53,15 @@ function checkPassword(form) {
     }
 }
 
+// 导出以上表单通用的处理代码
+export { 
+    addHint, 
+    removeHint, 
+    removeValidation, 
+    checkUsername, 
+    checkPassword
+};
+
 // 以下代码用于处理 id="loginForm" 的表单元素
 const loginForm = document.querySelector('#loginForm');
 // 在用户名文本框获得焦点时移除输入提示信息
@@ -127,7 +136,6 @@ loginForm.addEventListener('reset', function() {
     removeValidation(loginForm.password);
     // 重置表单
     loginForm.reset();
-    
 })
 
 // 以下代码用于处理 id="signupForm" 的表单元素
