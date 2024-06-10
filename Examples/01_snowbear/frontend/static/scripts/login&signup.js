@@ -18,7 +18,7 @@ loginForm.password.addEventListener('focus', function() {
 });
 // 在密码文本框失去焦点时检查输入
 loginForm.password.addEventListener('blur', function() {
-    checkPassword(loginForm);
+    checkPassword(loginForm, 'checkpwd');
 });
 // 提交表单时的处理逻辑
 loginForm.addEventListener('submit', async function(event) {
@@ -27,7 +27,7 @@ loginForm.addEventListener('submit', async function(event) {
     if (!loginForm.username.value || !loginForm.password.value) {
         // 用户名或密码为空时的处理逻辑
         checkUsername(loginForm);
-        checkPassword(loginForm);
+        checkPassword(loginForm, 'checkpwd');
         return;
     }
     // 收集表单数据
@@ -35,7 +35,7 @@ loginForm.addEventListener('submit', async function(event) {
         username: loginForm.username.value,
         password: md5(loginForm.password.value)
     };
-    console.log(formData);
+    // console.log(formData);
     // 发送用户登录请求
     try {
         const res = await fetch(loginForm.action, {
@@ -94,7 +94,7 @@ signupForm.password.addEventListener('focus', function() {
 })
 // 在密码文本框失去焦点时检查输入
 signupForm.password.addEventListener('blur', function() {
-    checkPassword(signupForm);
+    checkPassword(signupForm, 'checkpwd');
 });
 // 在用于确认密码的文本框获得焦点时移除输入提示信息
 signupForm.confirmpwd.addEventListener('focus', function() {

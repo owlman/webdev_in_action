@@ -87,10 +87,21 @@ const usersDBApi = {
 
     // 创建用于在数据库中修改指定用户数据的 API
     updateUser : async function(id, jsonData) {
+        // console.log(jsonData);
         try {
             await this.openCollect(collectName);
-            await this.collect.updateOne({['uid'] : Number(id)}, 
-                                                            {$set : jsonData});
+            await this.collect.updateOne(
+                {['uid'] : Number(id)}, 
+                {$set : 
+                    {
+                        'username' : jsonData.username,
+                        'password' : jsonData.password,
+                        'email' : jsonData.email,
+                        'phone' : jsonData.phone,
+                        'address' : jsonData.address,
+                        'avatar' : jsonData.avatar
+                    }
+            });
             return true;
         } catch(error) {
             console.log('数据修改错误：' + error);  

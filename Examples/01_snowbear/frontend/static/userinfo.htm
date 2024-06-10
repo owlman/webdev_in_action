@@ -17,7 +17,7 @@
     <!-- 引入blueimp-md5库的JavaScript脚本文件 -->
     <script src="./node_modules/blueimp-md5/js/md5.min.js"></script>
     <!-- 引入自定义的JavaScript脚本文件 -->
-    <script defer src="./scripts/formCheck.js"></script>
+    <script defer src="scripts/CommonForm.js"></script>
     <script defer src="scripts/userInfo.js"></script>
     <title>用户个人信息管理</title>
 </head>
@@ -84,7 +84,7 @@
         <header class="text-light row">
             <h1 class="col-8">个人信息管理</h1>
             <p class="col-4 text-end">
-                欢迎回来，<span id="userName"></span>！
+                欢迎回来，<span id="nickname"></span>！
             </p>
         </header>
         <section class="my-3 p-3 text-bg-light">
@@ -128,39 +128,62 @@
                             <div class="p-2 row border border-2 rounded-2">
                                 <div class="col-9">
                                     <div class="mb-3 row">
-                                        <label for="username" class="col-form-label-sm col-4">
+                                        <label for="username" class="col-form-label-sm col-3">
                                             你的昵称：
                                         </label>
-                                        <input type="text" class="col-form-control-sm col-8" id="username" name="username" />
+                                        <div class="col-9">
+                                            <input type="text" name="username"
+                                                class="form-control" 
+                                            />
+                                            <div id="checkname"></div>
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="phone" class="col-form-label-sm col-4">
-                                            电话号码：
+                                        <label for="phone" class="col-form-label-sm col-3">
+                                            手机号码：
                                         </label>
-                                        <input type="text" class="col-form-control-sm col-8" id="phone" name="phone" />
+                                        <div class="col-9">
+                                            <input type="text" name="phone"
+                                                class="form-control"
+                                            />
+                                            <div id="checkphone"></div>
+                                        </div>    
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="phone" class="col-form-label-sm col-4">
+                                        <label for="phone" class="col-form-label-sm col-3">
                                             电子邮件：
                                         </label>
-                                        <input type="text" class="col-form-control-sm col-8" id="email" name="email" />
+                                        <div class="col-9">
+                                            <input type="text" name="email"
+                                                class="form-control" 
+                                            />
+                                            <div id="checkemail"></div>
+                                        </div>    
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="phone" class="col-form-label-sm col-4">
+                                        <label for="address" class="col-form-label-sm col-3">
                                             收货地址：
                                         </label>
-                                        <input type="text" class="col-form-control-sm col-8" id="address" name="address" />
+                                        <div class="col-9">
+                                            <input type="text" name="address"
+                                                class="form-control" 
+                                            />
+                                            <div id="checkaddress"></div>
+                                        </div>    
                                     </div>
-                               </div>
+                                </div>
                                 <div class="col-3 text-center">
-                                    <img class="rounded-circle" width="100" 
-                                        src="./img/unknown.jpg">
+                                    <img class="rounded-circle" name="outputAvatar"
+                                        width="100" src="./img/unknown.jpg">
                                     <label class="m-2">
                                         <input type="file" name="avatar" 
-                                            style="display: none;" />
-                                        <input type="button" value="上传头像" 
+                                            style="display: none;"
+                                        />
+                                        <input type="button" name="uploadAvatar" 
                                             class="btn btn-outline-secondary btn-sm"
-                                            onclick="document.querySelector('#baseinfoForm').avatar.click()" /> 
+                                            value="上传头像"
+                                            onclick="document.querySelector('#baseinfoForm').avatar.click()"
+                                         /> 
                                     </label>
                                     <input type="submit" value="更新信息" 
                                         class="btn btn-primary btn-sm" />
@@ -174,29 +197,43 @@
                             <div class="p-2 row border border-2 rounded-2">
                                 <div class="col-9">
                                     <div class="mb-3 row">
-                                        <label for="oldPassword" class="col-form-label-sm col-4">
+                                        <label for="oldPassword" 
+                                            class="col-form-label-sm col-4">
                                             请输入你的旧密码：
                                         </label>
-                                        <input type="password" class="col-form-control-sm col-7"
-                                          name="oldPassword" />
+                                        <div class="col-8">
+                                            <input type="password"  
+                                                class="form-control"
+                                                name="oldPassword" 
+                                            />
+                                            <div id="checkoldPassword"></div>
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="newPassword" 
                                             class="col-form-label-sm col-4">
                                             请输入你的新密码：
                                         </label>
-                                        <input type="password" 
-                                            class="col-form-control-sm col-7"  
-                                            name="newPassword" />
+                                        <div class="col-8">
+                                            <input type="password" 
+                                                class="form-control"  
+                                                name="newPassword" 
+                                            />
+                                            <div id="checknewPassword"></div>
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="confirmPassword" 
                                             class="col-form-label-sm col-4">
                                             请确认你的新密码：
                                         </label>
-                                        <input type="password" 
-                                            class="col-form-control-sm col-7"  
-                                            name="confirmPassword" />
+                                        <div class="col-8">
+                                            <input type="password" 
+                                                class="form-control"  
+                                                name="confirmPassword" 
+                                            />
+                                            <div id="checkconfirmPassword"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
@@ -204,11 +241,12 @@
                                         警告：该操作可能会导致你无法再登录到本网站。
                                     </p>
                                     <input type="submit" value="确认更新密码" 
-                                        class="btn btn-primary btn-sm" />
+                                        class="btn btn-primary btn-sm" 
+                                    />
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> 
                     <div class="tab-pane fade container-fluid"
                         id="v-pills-messages" role="tabpanel" 
                         aria-labelledby="v-pills-messages-tab">
@@ -219,15 +257,22 @@
                                         警告：在注销用户之后，你将无法再登录到本网站。
                                     </p>
                                     <div class="mb-3 row col-12">
-                                        <label for="password" class="col-form-label-sm col-4">请输入你的密码：</label>
-                                        <input type="password"
-                                            class="col-form-control-sm col-4"  
-                                            name="password" />
+                                        <label for="password" 
+                                            class="col-form-label-sm col-4">
+                                            请输入你的密码：
+                                        </label>
+                                        <div class="col-5">
+                                            <input type="password"
+                                                class="form-control"  
+                                                name="password" 
+                                            />
+                                            <div id="checkPassword"></div>
+                                        </div>
                                         <input type="submit" value="确认注销" 
-                                            class="btn btn-danger btn-sm col-3 mx-2" />
+                                            class="btn btn-danger btn-sm col-3"
+                                        />
                                     </div>
-                                    </div>    
-                                </div>
+                                </div>    
                             </div>
                         </form>
                     </div>

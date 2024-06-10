@@ -62,6 +62,7 @@ const usersApi = {
     
     // 实现用户信息修改功能
     updateUser: async function(req, userid) {
+       // console.log(userid);
         return new Promise(async function(resolve, reject) {
             await getFormData(req, async function(userData) {
                 // console.log(userData);
