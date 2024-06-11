@@ -116,7 +116,7 @@ signupForm.confirmpwd.addEventListener('blur', function() {
     } else {
         // 确认密码输入合法时的处理逻辑
         this.classList.remove('is-invalid');
-        removeHint('confirmpwd');
+        removeHint(signupForm, 'confirmpwd');
         this.classList.add('is-valid');
     }
 });
