@@ -2,6 +2,27 @@
 const userData = JSON.parse(sessionStorage.getItem("userData"));
 const nickname = document.querySelector("#nickname");
 nickname.innerText = userData["username"];
+// 封装用于向后端发送修改数据请求的函数
+async function submitUserInfo() { 
+     // 先设置HTTP API所在的 URL
+     const actionAPI = 'http://localhost/users/'+userData['uid'];
+     // 再序列化要提交的数据
+     const formData = JSON.stringify(userData);
+     try {
+         const res = await fetch(actionAPI, {
+             method: 'PUT',
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: formData
+         });
+         return res.status;
+     } catch(error) {
+         // 请求出错时的处理逻辑
+         window.alert('请求出错');
+         return 0;
+     }  
+}
 
 // 以下代码用于处理 id="baseinfoForm" 的表单元素
 const baseinfoForm = document.querySelector("#baseinfoForm");
@@ -98,32 +119,18 @@ baseinfoForm.addEventListener('submit', async function(event) {
     userData['phone'] = baseinfoForm.phone.value;
     userData['address'] = baseinfoForm.address.value;
     // 开始提交数据
-    // 先设置HTTP API所在的 URL
-    const actionAPI = 'http://localhost/users/'+userData['uid'];
-    // 再序列化要提交的数据
-    const formData = JSON.stringify(userData);
-    try {
-        const res = await fetch(actionAPI, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: formData
-        });
-        if(res.status == 200) {
-            // 更新成功时的处理逻辑
-            window.alert('更新成功！');
-            // 更新存储在前端的用户数据
-            sessionStorage.setItem('userData', formData);
-            // 刷新当前页面
-            window.location.reload();
-        } else if(res.status == 403){
-            // 更新失败时的处理逻辑
-            window.alert('更新失败');
-        }
-    } catch(error) {
-        // 请求出错时的处理逻辑
-        window.alert('请求出错');
+   const status = await submitUserInfo();
+   if(status == 200) {
+        // 更新成功时的处理逻辑
+        window.alert('用户数据更新成功！');
+        // 更新存储在前端的用户数据
+        sessionStorage.setItem('userData', 
+            JSON.stringify(userData));
+        // 刷新当前页面
+        window.location.reload();
+    } else if(status == 403){
+        // 更新失败时的处理逻辑
+        window.alert('用户数据更新失败');
     }
 });
 
@@ -214,28 +221,13 @@ passwordForm.addEventListener('submit', async function(event) {
     // 更新用户的数据对象
     userData['password'] = md5(passwordForm.newPassword.value);
     // 开始提交数据
-    // 先设置HTTP API 所在的 URL
-    const actionAPI = 'http://localhost/users/'+userData['uid'];
-    // 再序列化要提交的数据
-    const formData = JSON.stringify(userData);
-    try {
-        const res = await fetch(actionAPI, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: formData
-        });
-        if(res.status == 200) {
-            window.alert('密码修改成功！');
-            sessionStorage.setItem('userData', formData);
-            window.location.reload();
-        } else if(res.status == 403){
-            window.alert('密码修改失败');
-        }
-    } catch(error) {
-        // 请求出错时的处理逻辑
-        window.alert('请求出错');
+    const status = await submitUserInfo()
+    if(status == 200) {
+        window.alert('密码修改成功！');
+        sessionStorage.setItem('userData', JSON.stringify(userData));
+        window.location.reload();
+    } else if(status == 403){
+        window.alert('密码修改失败');
     }
 });
 
