@@ -1,14 +1,3 @@
-<script setup>
-    import { reactive } from 'vue';
-    const userData = reactive({
-        username: 'lingjie',
-        phone: '1356666666',
-        email: 'lingjie@abcd.com',
-        address: '浙江省杭州市',
-        avatar: ''    
-    });
-</script>
-
 <template>
     <header class="d-flex justify-content-between align-items-center">
         <h1 class="text-start">个人信息管理</h1>
@@ -67,7 +56,7 @@
                 </div>
                 <div class="col-3 text-center">
                     <img class="rounded-circle" name="outputAvatar"
-                        width="100" src="../img/unknown.jpg">
+                        width="100" src="../assets/img/unknown.jpg">
                     <label class="m-2">
                         <input type="file" name="avatar" 
                             style="display: none;"
@@ -85,6 +74,17 @@
         </form>
     </section>
 </template>
+
+<script setup>
+    import { reactive } from 'vue';
+    const userData = reactive({
+        username: 'lingjie',
+        phone: '1356666666',
+        email: 'lingjie@abcd.com',
+        address: '浙江省杭州市',
+        avatar: ''    
+    });
+</script>
 
 <style scoped>
 /* 添加样式 */

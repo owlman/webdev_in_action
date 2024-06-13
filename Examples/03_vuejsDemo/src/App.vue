@@ -1,8 +1,3 @@
-<script setup>
-    // import HelloWorld from './components/HelloWorld.vue'
-    import baseInfo from './components/baseInfo.vue';
-</script>
-
 <template>
   <!-- <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -15,6 +10,11 @@
   <HelloWorld msg="Vite + Vue" /> -->
   <baseInfo></baseInfo>
 </template>
+
+<script setup>
+    // import HelloWorld from './components/HelloWorld.vue'
+    import baseInfo from './components/baseInfo.vue';
+</script>
 
 <style scoped>
 /* .logo {
