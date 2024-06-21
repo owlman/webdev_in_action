@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <!-- 以 ES6 模块的方式加载自定义前端脚本 -->
+    <script type="module" src="./script/my.js"></script>
+    <title>用户个人信息</title>
+</head>
+<body>
+    <!-- 以下是用于显示页面内容的标记 -->
+    <main id="content"></main>
+    <!-- 以下是用于设置页面模版的标记 -->
+    <script id="demo" type="text/html" >
+        {{ if name }}
+        <h1>{{ name }}的个人信息</h1>
+        <table>
+            <tr>
+                <td>姓名：</td>
+                <td>{{ name }}</td>
+            </tr>
+            <tr>
+                <td>年龄：</td>
+                <td>{{ age }}</td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td>{{ gender }}</td>
+            </tr>
+            <tr>
+                <td>爱好：</td>
+                <td>{{ each hobbies }} {{ $value }} {{ /each }}</td>
+            </tr>
+        </table>
+        {{ else }}
+        <h1>后端未能返回用户信息</h1>
+        {{ /if }}
+    </script>
+</body>
+</html>
