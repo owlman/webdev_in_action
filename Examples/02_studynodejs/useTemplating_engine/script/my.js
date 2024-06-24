@@ -9,6 +9,8 @@ const data = {
     hobbies: ['篮球', '足球', '游泳']
 };
 
+template.defaults.imports.logout = console.log;
+
 // template() 方法负责将数据填充到 id =“demo“ 的模板中
 // 并返回模板渲染的结果，这里将其保存在 content 变量中
 const content = template('demo', data);

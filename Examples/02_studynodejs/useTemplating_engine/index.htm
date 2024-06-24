@@ -11,6 +11,7 @@
     <main id="content"></main>
     <!-- 以下是用于设置页面模版的标记 -->
     <script id="demo" type="text/html" >
+        {{ $imports.logout("调用 console.log()方法") }}
         {{ if name }}
         <h1>{{ name }}的个人信息</h1>
         <table>
@@ -33,6 +34,12 @@
         </table>
         {{ else }}
         <h1>后端未能返回用户信息</h1>
+        {{ /if }}
+        {{ set isLogin = name!=null }}
+        {{ if isLogin }}
+        <h1>欢迎您，{{ name }}</h1>
+        {{ else }}
+        <h1>请先登录</h1>
         {{ /if }}
     </script>
 </body>
