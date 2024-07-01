@@ -1,0 +1,16 @@
+.loginPanel.normalPanel .title {
+    display: none;
+}
+.qrcode.lightBorder {
+    width: 174px;
+    height: 174px;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+.impowerBox .info {
+    display: none;
+}
+.web_qrcode_type_iframe {
+    width: 174px;
+}
+  
