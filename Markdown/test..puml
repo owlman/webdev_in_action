@@ -1,0 +1,19 @@
+@startuml
+skinparam actorStyle awesome
+actor 用户 as users
+cloud {
+    component 微信认证服务 as wxserver 
+}
+rectangle Web应用服务 as webapp #line.dotted  {
+    component 前端 as frontend
+    component 后端 as backend
+}
+
+frontend -r-> users: 1. 生成二维码
+users -d-> wxserver: 2. 扫描二维码
+wxserver -r-> frontend: 3. 请用户确认
+users -d-> wxserver : 4. 发送确认信息
+wxserver -u-> backend: 5. 发送认证结果
+backend -u-> frontend:6. 发送目标页面
+frontend -r-> users: 7. 显示目标页面
+@enduml
