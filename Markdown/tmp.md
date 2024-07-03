@@ -51,6 +51,7 @@ var obj = new WxLogin({
     style: "white",   //提供"black"、"white"可选，默认为黑色文字描述
     href: "data:text/css;base64,LmxvZ2luUGFuZWwubm9ybWFsUGFuZWwgLnRpdGxlIHsNCiAgZGlzcGxheTogbm9uZTsNCn0NCi5xcmNvZGUubGlnaHRCb3JkZXIgew0KICB3aWR0aDogMTc0cHg7DQogIGhlaWdodDogMTc0cHg7DQogIG1hcmdpbi10b3A6IDA7DQogIGJveC1zaXppbmc6IGJvcmRlci1ib3g7DQp9DQouaW1wb3dlckJveCAuaW5mbyB7DQogIGRpc3BsYXk6IG5vbmU7DQp9DQoud2ViX3FyY29kZV90eXBlX2lmcmFtZSB7DQogIHdpZHRoOiAxNzRweDsNCn0NCg=="  //自定义样式链接，第三方可根据实际需求覆盖默认样式
   });
+
 注意事项：
 
 如果二维码出来，但是跳转失败，一定要看看浏览器是否开启了拦截。
@@ -101,9 +102,11 @@ watch: {
     }
 },
 五、通过 code 获取access_token
+
 注：这一步可以给后端操作，把获取到的code通过调用接口给予后端，后端拿到数据以后，返回登录状态跟字段，前端也可以获取到所有的状态以后再返回给后端(但是这样没有必要，因为还是要给后端，后端需要筛选字段返回给我们)
 
 https://api.weixin.qq.com/sns/oauth2/access_token?
+
 appid=APPID    应用唯一标识，在微信开放平台提交应用审核通过后获得
 &secret=SECRET    应用密钥AppSecret，在微信开放平台提交应用审核通过后获得
 &code=CODE    填写第四步获取的 code 参数

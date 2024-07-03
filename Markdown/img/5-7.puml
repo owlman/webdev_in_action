@@ -1,0 +1,20 @@
+@startuml
+skinparam actorStyle awesome
+actor 用户 as users
+cloud 微信公众平台 as wxplatform {
+    component 微信认证服务 as wxserver 
+}
+rectangle Web应用服务 as webapp #line.dotted  {
+    component 前端界面 as frontend
+    component 后端服务 as backend
+}
+
+frontend -r-> users: 1. 生成二维码
+users -l-> wxplatform: 2. 扫描二维码
+wxplatform -u-> frontend: 3. 请用户确认
+users -l-> wxplatform : 4. 发送确认信息
+wxplatform -u-> frontend: 5. 拼接重定向地址
+frontend -l-> backend:  6. 发送认证码
+backend -r-> frontend: 7. 发送认证结果
+frontend -r-> users:  8. 确认认证结果
+@enduml
