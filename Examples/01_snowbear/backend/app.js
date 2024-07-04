@@ -12,7 +12,7 @@ const host = `http://localhost:${port}/`;
 
 // 定义静态的资源服务
 function staticServer(req, res) {
-    const webroot = '/frontend/static';
+    const webroot = '/frontend';
     fs.readFile(`.${webroot + req.url}`, function (err, data) {
         if (err !== null) {
             res.writeHead(404, {
@@ -20,7 +20,15 @@ function staticServer(req, res) {
             });
             return res.end('相关页面不存在！');
         }
-        res.writeHead(200);
+        if(path.extname(req.url) == '.js'){
+           // 设置JavaScript脚本的MIME类型
+           // 以便前端能以ES6模块的形式加载脚本  
+            res.writeHead(200, {
+                'Content-Type': 'application/javascript'
+            });
+        } else {
+            res.writeHead(200);
+        }
         res.end(data);
     });
 }
