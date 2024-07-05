@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- 引入Bootstrap框架需要加载的脚本文件 -->       
     <script defer src="./node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <!-- 引入Bootstrap框架的JavaScript脚本文件 -->
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- 引入FontAwesome图标库定义的样式文件 -->
     <link rel="stylesheet" 
@@ -307,70 +306,72 @@
                                                 data-bs-dismiss="modal" aria-label="Close">
                                             </button>
                                         </div>
-                                        <div class="modal-body" id="orderform">
-                                        </div>
-                                        <script id="orderformtpl" type="text/html">
-                                            <form id="neworder">
-                                                <div class="row g-3">
-                                                    <div class="col-auto">
-                                                        <select class="form-select"
-                                                            name="drink">
-                                                            <option selected">
-                                                                请选择饮料
-                                                            </option>
-                                                            {{ each drinks }}
-                                                            <option value="{{ $value.name  }}">
-                                                                {{ $value.name }}
-                                                            </option>
-                                                            {{ /each }}
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <select class="form-select" 
-                                                            name="size">
-                                                            <option selected>
-                                                                请选择尺寸
-                                                            </option>
-                                                            <option value="大杯">
-                                                                大杯
-                                                            </option>
-                                                            <option value="中杯">
-                                                                中杯
-                                                            </option>
-                                                            <option value="小杯">
-                                                                小杯
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <select class="form-select" 
-                                                            name="heatlevel">
-                                                            <option selected>
-                                                                请选择温度
-                                                            </option>
-                                                            <option value="热饮">
-                                                                热饮
-                                                            </option>
-                                                            <option value="常温">
-                                                                常温
-                                                            </option>
-                                                            <option value="少冰">
-                                                                少冰
-                                                            </option>
-                                                            <option value="正常冰">
-                                                                正常冰
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                        <div class="modal-body" >
+                                            <form id="orderForm" class="p-2">
+                                                <div id="drinkList"></div>
                                             </form>
+                                        </div>
+                                        <script id="drinklistTpl" type="text/html">
+                                            <div class="row g-3">
+                                                <div class="col-auto">
+                                                    <select class="form-select"
+                                                        name="drink">
+                                                        <option selected">
+                                                            请选择饮料
+                                                        </option>
+                                                        {{ each drinks }}
+                                                        <option value="{{ $value.price  }}">
+                                                            {{ $value.name }}
+                                                        </option>
+                                                        {{ /each }}
+                                                    </select>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <select class="form-select" 
+                                                        name="size">
+                                                        <option selected>
+                                                            请选择尺寸
+                                                        </option>
+                                                        <option value="2">
+                                                            大杯
+                                                        </option>
+                                                        <option value="1">
+                                                            中杯
+                                                        </option>
+                                                        <option value="0">
+                                                            小杯
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <select class="form-select" 
+                                                        name="heatlevel">
+                                                        <option selected>
+                                                            请选择温度
+                                                        </option>
+                                                        <option value="2">
+                                                            热饮
+                                                        </option>
+                                                        <option value="0">
+                                                            常温
+                                                        </option>
+                                                        <option value="1">
+                                                            少冰
+                                                        </option>
+                                                        <option value="2">
+                                                            正常冰
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </script>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" 
                                                 data-bs-dismiss="modal">
                                                 不想买了
                                             </button>
-                                            <button type="button" class="btn btn-primary">
+                                            <button type="button" class="btn btn-primary"
+                                                id="addorder">
                                                 确认下单，去支付
                                             </button>
                                         </div>
@@ -386,15 +387,14 @@
                                     <th>订单号</th>
                                     <th>订单内容</th>
                                     <th>订单日期</th>
-                                    <th>订单状态</th>
+                                    <th>订单价格</th>
                                     <th>可执行的操作</th>
                                 </tr>
                                 {{ each orderlist }}
                                 <tr>
                                     <td> {{ $value.number }} </td>
                                     <td> {{ $value.message }} </td>
-                                    <td> {{ $value.date }} </td>
-                                    <td> {{ $value.status }} </td>
+                                    <td> ￥{{ $value.date }} </td>
                                     <td>
                                         <button type="button" 
                                             class="btn btn-primary btn-sm"

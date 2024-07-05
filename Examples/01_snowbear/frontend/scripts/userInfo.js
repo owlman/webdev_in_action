@@ -76,7 +76,7 @@ baseinfoForm.address.addEventListener('focus', function() {
 });
 // 在收货地址文本框失去焦点时检查输入
 baseinfoForm.address.addEventListener('blur', function() {
-    checkAddress(baseinfoForm);
+    formCheck.checkAddress(baseinfoForm);
 });
 // 以下代码处理用户上传头像的操作
 baseinfoForm.avatar.addEventListener('change', function(event) {

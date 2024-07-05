@@ -1,6 +1,7 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const url = require('url');
 
 // 引入HTTP API模块
 const http_api = require('./httpApi');
@@ -11,16 +12,16 @@ const port = 80;
 const host = `http://localhost:${port}/`;
 
 // 定义静态的资源服务
-function staticServer(req, res) {
+function staticServer(reqPath, res) {
     const webroot = '/frontend';
-    fs.readFile(`.${webroot + req.url}`, function (err, data) {
+    fs.readFile(`.${webroot + reqPath}`, function (err, data) {
         if (err !== null) {
             res.writeHead(404, {
                 'Content-Type': 'text/html, charset=utf-8'
             });
             return res.end('相关页面不存在！');
         }
-        if(path.extname(req.url) == '.js'){
+        if(path.extname(reqPath) == '.js'){
            // 设置JavaScript脚本的MIME类型
            // 以便前端能以ES6模块的形式加载脚本  
             res.writeHead(200, {
@@ -54,6 +55,8 @@ function apiServer(req, res) {
 // 构建 HTTP 服务
 http.createServer(function (req, res) {
     req.url = (req.url == '/' ? '/index.htm' : req.url);
+    const urlobj = url.parse(req.url, true);
+    const staticPath = urlobj.pathname
     // 设置服务允许访问的静态资源
     const extNames = [
         '.htm', '.js',
@@ -61,8 +64,8 @@ http.createServer(function (req, res) {
         '.png', '.ico'
     ];
     // 判断前端请求的服务类型
-    if (extNames.includes(path.extname(req.url))) {
-        staticServer(req, res);
+    if (extNames.includes(path.extname(staticPath))) {
+        staticServer(staticPath, res);
     } else {
         apiServer(req, res);
     }
