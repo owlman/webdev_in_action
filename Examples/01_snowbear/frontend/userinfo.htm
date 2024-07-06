@@ -17,6 +17,7 @@
     <script src="./node_modules/blueimp-md5/js/md5.min.js"></script>
     <!-- 引入自定义的JavaScript脚本文件 -->
     <script type="module" src="./scripts/userInfo.js"></script>
+    <script type="module" src="scripts/orderManage.js"></script>
     <title>用户个人信息管理</title>
 </head>
 <body>
@@ -319,7 +320,7 @@
                                                         <option selected">
                                                             请选择饮料
                                                         </option>
-                                                        {{ each drinks }}
+                                                        {{ each menuList }}
                                                         <option value="{{ $value.price  }}">
                                                             {{ $value.name }}
                                                         </option>
@@ -394,16 +395,17 @@
                                 <tr>
                                     <td> {{ $value.number }} </td>
                                     <td> {{ $value.message }} </td>
-                                    <td> ￥{{ $value.date }} </td>
+                                    <td> {{ $value.date }} </td>
+                                    <td> ￥{{ $value.price }} </td>
                                     <td>
                                         <button type="button" 
-                                            class="btn btn-primary btn-sm"
-                                            onclick="showOrderDetail('{{ $value.number }}')">
+                                            class="showDetail btn btn-primary btn-sm"
+                                            order-number="{{ $value.number }}">
                                             查看详情
                                         </button>
                                         <button type="button" 
-                                            class="btn btn-danger btn-sm"
-                                            onclick="deleteOrder('{{ $value.number }}')">
+                                            class="deleteOrder btn btn-danger btn-sm"
+                                            order-number="{{ $value.number }}">
                                             删除订单
                                         </button>
                                     </td>
@@ -411,7 +413,6 @@
                                 {{ /each }}
                             </table>
                         </script>
-                        <script type="module" src="scripts/orderManage.js"></script>
                     </div>
                 </div>
             </div>
