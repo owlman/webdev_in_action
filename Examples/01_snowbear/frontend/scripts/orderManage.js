@@ -11,9 +11,7 @@ const userData = JSON.parse(sessionStorage.getItem("userData"));
 
 // 用于渲染用户订单列表的函数
 async function renderOrderList() {
-    // const actionAPI = 'http://snowbear.com/orders/' + userData["uid"];
-    // 本地测试用的 URL
-    const actionAPI = 'http://localhost/orders/' + userData["uid"];
+    const actionAPI = `http://${domain}/orders/${userData["uid"]}`;
     try {
         // 获取当前用户所有订单
         const res = await fetch(actionAPI, { method: 'GET' });
@@ -27,22 +25,6 @@ async function renderOrderList() {
     }
 }
 
-// 用于渲染新订单表单的函数
-async function renderNewOrderForm() {
-    // 从后端获取产品列表
-    const actionAPI = `http://${domain}/orders/menu`;
-    try {
-        // 获取当前饮料店的菜单
-        const res = await fetch(actionAPI, { method: 'GET' });
-        data.menuList = await res.json();
-        const drinklistTpl = template('drinklistTpl', data);
-        const drinkList = document.querySelector('#drinkList');
-        drinkList.innerHTML = drinklistTpl;    
-    } catch (error) {
-        throw error;
-    }
-}
-
 // 用于显示订单详情的函数
 async function showOrderDetail(orderNumber) {
     const actionAPI = `http://${domain}/orders/${userData["uid"]}&${orderNumber}`;
@@ -51,7 +33,10 @@ async function showOrderDetail(orderNumber) {
         // 获取当前用户所有订单
         const res = await fetch(actionAPI, { method: 'GET' });
         const data = await res.json();
-        const outMsg = `订单编号：${data.number}\n订单详情：${data.message}\n订单价格：${data.price}元`;
+        const outMsg = `\
+            订单编号：${data.number}\n \
+            订单详情：${data.message}\n \
+            订单价格：${data.price}元`;
         window.alert(outMsg);
     } catch (error) {
         throw error;
@@ -76,8 +61,8 @@ async function deleteOrder(orderNumber) {
 // 执行页面渲染操作
 window.addEventListener('load', async function() {
     try {
+        // 渲染订单管理界面
         await renderOrderList();
-        await renderNewOrderForm();
         const showDetailBtns = document.querySelectorAll('.showDetail');
         // console.log(showDetailBtns.length);
         for (let btn of showDetailBtns) {
@@ -102,12 +87,30 @@ window.addEventListener('load', async function() {
                 }
             });
         }
+        // 渲染饮料选购界面
+        await renderNewOrderForm();
     } catch (error) {
         window.alert(`页面渲染错误：${error}`);
     }
 })
 
-// 获取下拉菜单中选中的选项
+// 用于渲染饮料选购界面的函数
+async function renderNewOrderForm() {
+    // 从后端获取产品列表
+    const actionAPI = `http://${domain}/orders/menu`;
+    try {
+        // 获取当前饮料店的菜单
+        const res = await fetch(actionAPI, { method: 'GET' });
+        data.menuList = await res.json();
+        const drinklistTpl = template('drinklistTpl', data);
+        const drinkList = document.querySelector('#drinkList');
+        drinkList.innerHTML = drinklistTpl;    
+    } catch (error) {
+        throw error;
+    }
+}
+
+// 用于获取下拉菜单中被选项的函数
 function getSelectItem(selectInput) {
     const index = selectInput.selectedIndex;
     if (index == 0) {

@@ -1,4 +1,6 @@
+// 加载用于微信认证的 JS 文件
 import "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"
+// 加载用于模板渲染的 JS 文件
 import "../node_modules/art-template/lib/template-web.js"
 
 window.addEventListener('load', async function () {

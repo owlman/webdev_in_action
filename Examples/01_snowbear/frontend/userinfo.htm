@@ -88,8 +88,8 @@
         </header>
         <section class="my-3 p-3 text-bg-light">
             <div class="d-flex align-items-start">
-                <div class="nav flex-column nav-pills me-3 text-nowrap"
-                    id="v-pills-tab" role="tablist" 
+                <div id="v-pills-tab" role="tablist" 
+                    class="nav flex-column nav-pills me-3 text-nowrap"
                     aria-orientation="vertical">
                     <button class="nav-link active" 
                             id="v-pills-baseinfo-tab" 
@@ -118,6 +118,7 @@
                             aria-selected="false">
                             注销账户
                     </button>
+                    <!-- 在此处添加新的导航项 -->
                     <button class="nav-link" 
                             id="v-pills-order-tab" 
                             data-bs-toggle="pill" 
@@ -289,92 +290,93 @@
                         <header class="p-3 row">
                             <h4 class="col-10">所有订单 </h3>
                             <div class="col-2 text-end">
-                                <!-- Button trigger modal -->
+                                <!-- 此处预留进入点餐界面的入口 -->
                                 <button type="button" class="btn btn-primary btn-sm"   
                                     data-bs-toggle="modal" data-bs-target="#addorder">
                                     我要点饮料
                                 </button>
-                                <!-- Modal -->
+                                <!-- 此处将用于放置充当点餐界面的对话框组件 -->
                                 <div class="modal fade" id="addorder" tabindex="-1"
                                     aria-labelledby="addorderLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="addorderLabel">
-                                                请选择饮料，并下单！
-                                            </h5>
-                                            <button type="button" class="btn-close"
-                                                data-bs-dismiss="modal" aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" >
-                                            <form id="orderForm" class="p-2">
-                                                <div id="drinkList"></div>
-                                            </form>
-                                        </div>
-                                        <script id="drinklistTpl" type="text/html">
-                                            <div class="row g-3">
-                                                <div class="col-auto">
-                                                    <select class="form-select"
-                                                        name="drink">
-                                                        <option selected">
-                                                            请选择饮料
-                                                        </option>
-                                                        {{ each menuList }}
-                                                        <option value="{{ $value.price  }}">
-                                                            {{ $value.name }}
-                                                        </option>
-                                                        {{ /each }}
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <select class="form-select" 
-                                                        name="size">
-                                                        <option selected>
-                                                            请选择尺寸
-                                                        </option>
-                                                        <option value="2">
-                                                            大杯
-                                                        </option>
-                                                        <option value="1">
-                                                            中杯
-                                                        </option>
-                                                        <option value="0">
-                                                            小杯
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <select class="form-select" 
-                                                        name="heatlevel">
-                                                        <option selected>
-                                                            请选择温度
-                                                        </option>
-                                                        <option value="2">
-                                                            热饮
-                                                        </option>
-                                                        <option value="0">
-                                                            常温
-                                                        </option>
-                                                        <option value="1">
-                                                            少冰
-                                                        </option>
-                                                        <option value="2">
-                                                            正常冰
-                                                        </option>
-                                                    </select>
-                                                </div>
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addorderLabel">
+                                                    请选择饮料，并下单！
+                                                </h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                </button>
                                             </div>
-                                        </script>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" 
-                                                data-bs-dismiss="modal">
-                                                不想买了
-                                            </button>
-                                            <button type="button" class="btn btn-primary"
-                                                id="addorder">
-                                                确认下单，去支付
-                                            </button>
+                                            <div class="modal-body" >
+                                                <form id="orderForm" class="p-2">
+                                                    <div id="drinkList"></div>
+                                                </form>
+                                            </div>
+                                            <script id="drinklistTpl" type="text/html">
+                                                <div class="row g-3">
+                                                    <div class="col-auto">
+                                                        <select class="form-select"
+                                                            name="drink">
+                                                            <option selected">
+                                                                请选择饮料
+                                                            </option>
+                                                            {{ each menuList }}
+                                                            <option value="{{ $value.price  }}">
+                                                                {{ $value.name }}
+                                                            </option>
+                                                            {{ /each }}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <select class="form-select" 
+                                                            name="size">
+                                                            <option selected>
+                                                                请选择尺寸
+                                                            </option>
+                                                            <option value="2">
+                                                                大杯
+                                                            </option>
+                                                            <option value="1">
+                                                                中杯
+                                                            </option>
+                                                            <option value="0">
+                                                                小杯
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <select class="form-select" 
+                                                            name="heatlevel">
+                                                            <option selected>
+                                                                请选择温度
+                                                            </option>
+                                                            <option value="2">
+                                                                热饮
+                                                            </option>
+                                                            <option value="0">
+                                                                常温
+                                                            </option>
+                                                            <option value="1">
+                                                                少冰
+                                                            </option>
+                                                            <option value="2">
+                                                                正常冰
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </script>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" 
+                                                    data-bs-dismiss="modal">
+                                                    不想买了
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                    id="addorder">
+                                                    确认下单，去支付
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
