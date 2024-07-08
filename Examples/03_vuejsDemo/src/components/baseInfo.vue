@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-3 text-center">
                     <img class="rounded-circle" name="outputAvatar"
-                        width="100" src="../assets/img/unknown.jpg">
+                        width="100" src="../assets/unknown.jpg">
                     <label class="m-2">
                         <input type="file" name="avatar" 
                             style="display: none;"
