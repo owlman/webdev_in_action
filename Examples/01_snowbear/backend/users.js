@@ -25,11 +25,11 @@ const usersApi = {
                 {
                     return resolve(false);
                 }    
-                //console.log(newuser);
-                newuser.address = "";
-                newuser.phone = "";
-                newuser.email = "";
-                newuser.avatar = "";
+               console.log(newuser);
+                newuser.address = newuser.address || "";
+                newuser.phone = newuser.phone || "";
+                newuser.email = newuser.email || "";
+                newuser.avatar = newuser.avatar || "";
                 resolve(await usersDBApi.addUser(newuser));
             });
         })
@@ -39,7 +39,7 @@ const usersApi = {
     userLogin: async function(req) {
         return new Promise(async function(resolve, reject) {    
             await getFormData(req, async function(loginData) {
-                // console.log(loginData);
+                console.log(loginData);
                 if(loginData.username == undefined 
                     || loginData.password == undefined)
                 {
