@@ -18,7 +18,7 @@
     <!-- 引入自定义的JavaScript脚本文件 -->
     <script type="module" src="./scripts/userInfo.js"></script>
     <script type="module" src="scripts/orderManage.js"></script>
-    <title>用户个人信息管理</title>
+    <title>用户信息管理</title>
 </head>
 <body>
     <!-- 导航栏区域开始-->
@@ -81,7 +81,7 @@
     <main class="container-fluid p-5">
         <!-- 在此处填充网页的主体内容 -->
         <header class="text-light row">
-            <h1 class="col-8">个人信息管理</h1>
+            <h1 class="col-8">用户信息管理</h1>
             <p class="col-4 text-end">
                 欢迎回来，<span id="nickname"></span>！
             </p>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="phone" class="col-form-label-sm col-3">
-                                            手机号码：
+                                            电话号码：
                                         </label>
                                         <div class="col-9">
                                             <input type="text" name="phone"
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="phone" class="col-form-label-sm col-3">
-                                            电子邮件：
+                                            电子邮箱：
                                         </label>
                                         <div class="col-9">
                                             <input type="text" name="email"
@@ -176,7 +176,7 @@
                                         <div class="col-9">
                                             <input type="text" name="address"
                                                 autocomplete="on" class="form-control" 
-                                            />
+                                            /> 
                                             <div id="checkaddress"></div>
                                         </div>    
                                     </div>
@@ -263,7 +263,7 @@
                             <div class="p-2 row border border-2 rounded-2">
                                 <div class="col-12 px-4">
                                      <p class="text-danger fs-4 mb-4">
-                                        警告：在注销用户之后，你将无法再登录到本网站。
+                                        警告：在注销账户之后，你将无法再登录到本网站。
                                     </p>
                                     <div class="mb-3 row col-12">
                                         <label for="password" 
